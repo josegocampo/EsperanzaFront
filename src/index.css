@@ -1,10 +1,11 @@
 body {
   margin: 0;
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Courgette', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
   background: black;
+  
 }
 
 code {
