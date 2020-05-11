@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import cancha from '../images/cancha.jpg'
+import usga from '../images/usga-logo.png'
+import esperanza from '../images/esperanza.png'
 import S, {keyframes} from 'styled-components'
 import {BrowserRouter as Router, Link} from 'react-router-dom'
 
@@ -10,18 +12,19 @@ return(
 <div className="landing">
         
   <Main>
-    <Blur> 
+  <Title><img src={esperanza} className="oak"/></Title>
       <Content>
-              <Title>Golf La Esperanza</Title>
+          
               <Buttons>
           
-                <Link to="/game" style={{ textDecoration: 'none' }}><Button><div className="text">Ingresar un Score</div></Button></Link>
+                <Link to="/gameup" style={{ textDecoration: 'none' }}><Button><div className="text">Ingresar un Score</div></Button></Link>
                 <Button><div className="text">Revisar Juegos pasados</div ></Button>
                 <Button><div className="text">Revisar Estadisticas</div ></Button>
   
               </Buttons>  
+             
       </Content>
-    </Blur>
+  
    
   </Main>
 </div>
@@ -32,72 +35,92 @@ return(
 export default Landing;
 
 const Main = S.div` 
-    background-image: url(${cancha});
-    height: 550px;
-    width: 420px;
+    
+    height: 450px;
+    width: 373px;
+    margin-top: 20px;
+  
+
     
 
   `
-  const breatheAnimation = keyframes`
-  0% {    backdrop-filter: blur(8px);
-    background: rgba(255, 255, 255, 0.2);   }
-  10% {    backdrop-filter: blur(7.2px);
-    background: rgba(255, 255, 255, 0.18);   }
-  20% {   backdrop-filter: blur(6.4px); 
-    background: rgba(255, 255, 255, 0.16);  }
-  30% {    backdrop-filter: blur(5.6px);
-    background: rgba(255, 255, 255, 0.14);  }
-  40% {   backdrop-filter: blur(4.8px); 
-      background: rgba(255, 255, 255, 0.12);  }
-  50% {    backdrop-filter: blur(4px);
-      background: rgba(255, 255, 255, 0.1);  }
-  60% {    backdrop-filter: blur(3.2px);
-        background: rgba(255, 255, 255, 0.08);  }
-  70% {   backdrop-filter: blur(2.4px); 
-          background: rgba(255, 255, 255, 0.06);  }
-  80% {    backdrop-filter: blur(1.6px);
-          background: rgba(255, 255, 255, 0.04);  }    
-  90% {   backdrop-filter: blur(0.8px); 
-            background: rgba(255, 255, 255, 0.02);  }
-  100% {    backdrop-filter: blur(0px);
-            background: rgba(255, 255, 255, 0);  }    
+  // const breatheAnimation = keyframes`
+  // 0% {    backdrop-filter: blur(8px);
+  //   background: rgba(255, 255, 255, 0.2);   }
+  // 10% {    backdrop-filter: blur(7.2px);
+  //   background: rgba(255, 255, 255, 0.18);   }
+  // 20% {   backdrop-filter: blur(6.4px); 
+  //   background: rgba(255, 255, 255, 0.16);  }
+  // 30% {    backdrop-filter: blur(5.6px);
+  //   background: rgba(255, 255, 255, 0.14);  }
+  // 40% {   backdrop-filter: blur(4.8px); 
+  //     background: rgba(255, 255, 255, 0.12);  }
+  // 50% {    backdrop-filter: blur(4px);
+  //     background: rgba(255, 255, 255, 0.1);  }
+  // 60% {    backdrop-filter: blur(3.2px);
+  //       background: rgba(255, 255, 255, 0.08);  }
+  // 70% {   backdrop-filter: blur(2.4px); 
+  //         background: rgba(255, 255, 255, 0.06);  }
+  // 80% {    backdrop-filter: blur(1.6px);
+  //         background: rgba(255, 255, 255, 0.04);  }    
+  // 90% {   backdrop-filter: blur(0.8px); 
+  //           background: rgba(255, 255, 255, 0.02);  }
+  // 100% {    backdrop-filter: blur(0px);
+  //           background: rgba(255, 255, 255, 0);  }    
   
- `
-  
-const Blur = S.div`
-    background: rgba(255, 255, 255, 0.2); 
-    backdrop-filter: blur(8px); 
-    height: 100%;
-    width: 100%;
-    animation-name: ${breatheAnimation};
-    animation-duration: 2s;
-    -webkit-animation-fill-mode: forwards;
-`
+ 
+
 const Content = S.div` 
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 95%;
+    height: 100%;
     justify-content: space-between;
+    background-image: url(${cancha});
+    background-size: 373px 450px;
+    background-position: 0% 100%;
 
   `
 
 const Title = S.h1`
   font-size: 35px;
-  font-weight: 600;
-  color: #ff0a42;
-  margin-top: 30px;
+  font-weight: 400;
+  width: 100%; 
+  height: 100px;
+  margin-bottom: 0;
+  color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: #edece3;
+  background-position: 0 100%;
+  background-size: 100% 2px;
+  border-bottom: 3px solid #762417c4;
+  text-align: center;
+  z-index: 100;
+  background-image: linear-gradient(transparent 50%,#f6f5f0 50%);
+
 
 `
 
+// background: #edece3;
+// background-position: 0 100%;
+// background-size: 100% 2px;
+
+// text-align: center;
+// z-index: 100;
+// background-image: linear-gradient(transparent 50%,#f6f5f0 50%);
+
 const Buttons = S.div`
-    height: 30%;
-    width: 50%;
+    height: 150px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     text-decoration: none;
+    margin-top: 200px;
+  
 
 `
 
@@ -107,8 +130,7 @@ const Button = S.div`
     border-bottom: none;
     width: 170px;
     height: 40px;
-    background: dodgerblue;
-    color: black;
+    color: white;
     font-weight: 600;
     font-size: 13px;
     display: flex;
@@ -117,13 +139,20 @@ const Button = S.div`
     cursor: pointer;
     border-radius: 5px;
     letter-spacing: 0.3px;
-    border: 3px solid white;
+    background: #38383885;
+    
 
   
 
     &:hover {
-      background-color: yellow;
-      color: black;
+      background-color: #edece3;
+      color: #764F17;
+      background: #edece3;
+      background-position: 0 100%;
+      background-size: 100% 2px;
+      text-align: center;
+      z-index: 100;
+      background-image: linear-gradient(transparent 50%,#f6f5f0 50%);
  
     -webkit-transition: background-color 0.5s ease-in; 
             transition: background-color 0.5s ease-in;
@@ -133,3 +162,14 @@ const Button = S.div`
   
 `
 
+// const Copy = S.div`
+//     display: flex;
+//     flex-direction: row;
+//     width: 280px;
+//     height: 40px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     font-size: 12px;
+  
+// `

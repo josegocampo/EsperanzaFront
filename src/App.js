@@ -1,6 +1,7 @@
 import React from 'react'
 import Landing from './components/Landing'
 import Game from './components/Game'
+import GameUp from './components/GameUp'
 import './App.css'
 import {BrowserRouter, Route} from 'react-router-dom'
 
@@ -10,6 +11,7 @@ const App = () => {
      <BrowserRouter>
       <Route exact path ="/" component={Landing} />
       <Route exact path ="/game" component={Game} />
+      <Route exact path ="/gameup" component={GameUp} />
      </BrowserRouter>
 
      
