@@ -1,13 +1,54 @@
 import React, {useState} from 'react'
 import S from 'styled-components'
 import data from '../mockdata'
+import '../App.css'
 
+const holeHandicap = {
+       hole1: 7,
+       hole2: 6,
+       hole3: 8,
+       hole4: 5,
+       hole5: 2,
+       hole6: 4,
+       hole7: 1,
+       hole8: 9,
+       hole9: 3,
+}
 
+const holeScore = {
+       hole1: 4,
+       hole2: 5,
+       hole3: 4,
+       hole4: 3,
+       hole5: 4,
+       hole6: 5,
+       hole7: 4,
+       hole8: 3,
+       hole9: 4,
+}
 
+const holes = [
+       {hole1:{par: 4, handicap:7}},
+       {hole2:{par: 5, handicap:6}},
+       {hole3:{par: 4, handicap:8}},
+       {hole4:{par: 3, handicap:8}},
+       {hole5:{par: 4, handicap:2}},
+       {hole6:{par: 5, handicap:4}},
+       {hole7:{par: 4, handicap:1}},
+       {hole8:{par: 3, handicap:9}},
+       {hole9:{par: 4, handicap:3}},
+]
 
-const Game = () =>{
+console.log(holes[0].hole1)
+const long = 6
+
+const GameUp = () =>{
 
     const [players, setPlayers] = useState(data)
+
+    
+
+    console.log(players[0].holes.hole1)
 
      //esta funcion se usa para ir actualizando el score de cada jugador en este partido en la parte
     //de abajo de la pantalla.
@@ -29,15 +70,37 @@ const Game = () =>{
         cP[id] = {...cP[id], gross : score }
         setPlayers(cP)
         }
-      
+
+        const getNetScore = (player, hole, score) =>{
+              let maxScore = 0
+              let netScore = score
+              if (player.handicap /2  <= holeHandicap[hole]){
+                     maxScore = holeScore[hole] + 2
+              }
+              else if (player.handicap /2  > holeHandicap[hole]) {
+                     maxScore = holeScore[hole] + 3
+              }
+              if (score > maxScore){
+                     netScore = maxScore
+              }
+              return netScore
+              }
+
+       const holeMax = (player,hole,score) =>{
+              
+              if (getNetScore(player,hole,score) <  score){
+              return true}
+       }
+          
     // copiamos el array de players que seteamos en el state, sacamos el id de cada player de los mismos inputs, 
     // pasamos el score de cada hoyo y el gross score a cada jugador y lo guardamos en un array dentro del objeto 
     // de cada jugador.
-    const handlePlayers = e => {
+    const handlePlayers = (e)=> {
         const copyPlayers = [...players]
         const id = Number(e.target.id -1)
         let holeName = e.target.name
-
+        const player = copyPlayers[id]
+        const score = e.target.value
         if(!copyPlayers[id].holes){
             copyPlayers[id] = {...copyPlayers[id], holes: {[holeName] : e.target.value}}
             setPlayers(copyPlayers)
@@ -51,7 +114,7 @@ const Game = () =>{
         };
 
 
-   
+    console.log(getNetScore(players[0], 'hole1', players[0].holes.hole1))
     //if player handicap is lower than hole handicap, allow max score of hole par +2, if player handicap is 
     //higher than hole handicap, allow max score of hole par+3
 
@@ -66,10 +129,12 @@ const Game = () =>{
        <Row>
           <Hole>1</Hole><Par>4</Par>
              <Box><Input  id={players[0].id}  
-                    className="hole"
+                     className={ holeMax(players[0], 'hole1', players[0].holes.hole1) ? 'hole red' : 'hole'}
                     type="text"
                     onChange={e => handlePlayers(e)}
-                    name="hole1"></Input>
+                    name="hole1"
+                    value={players[0].holes.hole1 }
+                   ></Input>
              </Box>
     
              <Box><Input  id={players[1].id}  
@@ -330,6 +395,7 @@ const Game = () =>{
 
 
 const Card = S.form`
+margin-top: 100px;
  height: 530px;
  width: 373px;
  display: flex;
@@ -409,4 +475,4 @@ const Box = S.div`
  justify-content: center;
 `
 
-export default Game
+export default GameUp

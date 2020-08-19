@@ -54,6 +54,7 @@
   display: flex;
   text-align: center;
   font-family: 'Exo 2', sans-serif;
+  color: black;
 }
 
 .logo{
@@ -67,6 +68,8 @@
   margin-top: 10px;
 
 
- 
+}
 
+.red{
+  color: red;
 }

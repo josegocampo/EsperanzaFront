@@ -2,7 +2,8 @@ const players = [
     {   id: 1,
         name: "Jose",
         password: "blabla",
-        handicap: 16
+        handicap: 16,
+        holes: {hole1: 5}
    },
     {
         id: 2,
