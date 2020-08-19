@@ -36,7 +36,7 @@ const playas = [
         hole9: '',
             
     },
-    hcScore: {
+    hcScores: {
         hole1: '',
         hole2: '',
         hole3: '',
@@ -48,7 +48,7 @@ const playas = [
         hole9: '',
             
     },
-    netScore: {
+    netScores: {
         hole1: '',
         hole2: '',
         hole3: '',
@@ -79,7 +79,7 @@ const playas = [
         hole9: '',
             
     },
-    hcScore: {
+    hcScores: {
         hole1: '',
         hole2: '',
         hole3: '',
@@ -91,7 +91,7 @@ const playas = [
         hole9: '',
             
     },
-    netScore: {
+    netScores: {
         hole1: '',
         hole2: '',
         hole3: '',
@@ -122,7 +122,7 @@ const playas = [
         hole9: '',
             
     },
-    hcScore: {
+    hcScores: {
         hole1: '',
         hole2: '',
         hole3: '',
@@ -134,7 +134,7 @@ const playas = [
         hole9: '',
             
     },
-    netScore: {
+    netScores: {
         hole1: '',
         hole2: '',
         hole3: '',
@@ -165,7 +165,7 @@ const playas = [
         hole9: '',
             
     },
-    hcScore: {
+    hcScores: {
         hole1: '',
         hole2: '',
         hole3: '',
@@ -177,7 +177,7 @@ const playas = [
         hole9: '',
             
     },
-    netScore: {
+    netScores: {
         hole1: '',
         hole2: '',
         hole3: '',
@@ -201,27 +201,16 @@ const Game = () =>{
 
     console.log(players[0])
 
-    const giveMeScore = (copyPlayers, id) => {
-        let score = 0
-        let hc_score = 0
-        let net_score = 0
-        console.log(copyPlayers)
-        //aqui tomamos los players del parametro copyPlayers porque aun no llegan al state, al corren
-        //primero esta funcion dentro de handleplayer
-        const playerHoles = copyPlayers[id].holes
-        const hcScores = copyPlayers[id].hcScore
-        const netScores =  copyPlayers[id].netScore
-     
-        const getScores = Object.values(playerHoles)
-        getScores.forEach(s => score += Number(s))
 
-        const getHcScores = Object.values(hcScores)
-        getHcScores.forEach(s => hc_score += Number(s))
-        
-        const getNetScore = Object.values(netScores)
-        getNetScore.forEach(s => net_score += Number(s))
-        
-        copyPlayers[id] = {...copyPlayers[id], gross : score, hc_score: hc_score , net_score: net_score}
+    const giveMeScore = (copyPlayers, id) => {
+        const {holes, hcScores, netScores} = copyPlayers[id]
+
+        const getScore = Object.values(holes).reduce((a,c) => {return Number(a) + Number(c)}, 0)
+        const getHcScores = Object.values(hcScores).reduce((a,c) => {return Number(a) + Number(c)}, 0)
+        const getNetScore = Object.values(netScores).reduce((a,c) => {return Number(a) + Number(c)}, 0)
+
+        copyPlayers[id] = {...copyPlayers[id], gross_score : getScore, hc_score: getHcScores , net_score: getNetScore}
+
         setPlayers(copyPlayers)
         }
         
@@ -251,7 +240,6 @@ const Game = () =>{
         }
 
        const holeMax = (player,holeIndex,score) =>{
-              
               if (getHcScore(player,holeIndex,score) <  score){
               return true}
        }
@@ -267,7 +255,7 @@ const Game = () =>{
         const handicapcScore = getHcScore(copyPlayers[id], holeIndex, e.target.value)
         const netScr = getNetScore(copyPlayers[id], holeIndex, e.target.value)
  
-        copyPlayers[id] = {...copyPlayers[id], ...copyPlayers[id].holes[holeName] = e.target.value, ...copyPlayers[id].hcScore[holeName] = handicapcScore, ...copyPlayers[id].netScore[holeName] = netScr}
+        copyPlayers[id] = {...copyPlayers[id], ...copyPlayers[id].holes[holeName] = e.target.value, ...copyPlayers[id].hcScores[holeName] = handicapcScore, ...copyPlayers[id].netScores[holeName] = netScr}
 
         setPlayers(copyPlayers)    
 
@@ -315,7 +303,7 @@ const Game = () =>{
                   })}
                   </Column> })}
 </Bottom>
-                <NameRow> <Box ></Box><Box>G</Box>{players.map(e =><Box>{e.gross}</Box>)}</NameRow>
+                <NameRow> <Box ></Box><Box>G</Box>{players.map(e =><Box>{e.gross_score}</Box>)}</NameRow>
                 <NameRow> <Box ></Box><Box>N</Box>{players.map(e =><Box>{e.net_score}</Box>)}</NameRow>
                 <NameRow> <Box ></Box><Box>H</Box>{players.map(e =><Box>{e.hc_score}</Box>)}</NameRow>
     
