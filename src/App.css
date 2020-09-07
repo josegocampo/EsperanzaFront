@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=Exo+2:600&display=swap');
+
+.App {
+  text-align: center;
+  margin: 0 auto;
+  width: 640px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.text{
+  font-family: 'Exo 2', sans-serif;
+}
+
+.hole{
+  outline-color: transparent;
+  -webkit-appearance: none; box-shadow: none !important;
+  outline-style: none;
+  display: flex;
+  text-align: center;
+  font-family: 'Exo 2', sans-serif;
+  color: black;
+}
+
+.logo{
+ width: 30px;
+ margin-left: 3px;
+ margin-right: 0px;
+}
+
+.oak{
+  width: 100px;
+  margin-top: 10px;
+
+
+}
+
+.red{
+  color: red;
+}
