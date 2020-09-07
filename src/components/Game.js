@@ -272,7 +272,7 @@ const Game = () =>{
     return(
 <div>
     <Card>
-      <NameRow> <Box >A</Box><Box>X</Box>{players.map(e =><Box>{e.name}</Box>)}</NameRow>
+      <NameRow> <Box >Hole</Box><Box>Par</Box>{players.map(e =><Box>{e.name}</Box>)}</NameRow>
       <Bottom>
     
               {rows.map((row, rowIndex) =>{ return <Column>
@@ -303,9 +303,9 @@ const Game = () =>{
                   })}
                   </Column> })}
 </Bottom>
-                <NameRow> <Box ></Box><Box>G</Box>{players.map(e =><Box>{e.gross_score}</Box>)}</NameRow>
-                <NameRow> <Box ></Box><Box>N</Box>{players.map(e =><Box>{e.net_score}</Box>)}</NameRow>
-                <NameRow> <Box ></Box><Box>H</Box>{players.map(e =><Box>{e.hc_score}</Box>)}</NameRow>
+                <NameRow> <Box ></Box><Box>Gross</Box>{players.map(e =><Box>{e.gross_score}</Box>)}</NameRow>
+                <NameRow> <Box ></Box><Box>Neto</Box>{players.map(e =><Box>{e.net_score}</Box>)}</NameRow>
+                <NameRow> <Box ></Box><Box>Hc</Box>{players.map(e =><Box>{e.hc_score}</Box>)}</NameRow>
     
 
     </Card>
