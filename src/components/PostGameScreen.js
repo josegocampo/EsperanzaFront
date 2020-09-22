@@ -44,8 +44,8 @@ const PostGameScreen = () => {
 
     return (
         <div> 
-           {winners ? winners.length > 1 ? <div>There is a tie between {winners.map((player) => <span> {player.player_id}</span> )}</div>
-           : `The Winner is ${winners[0].player_id}`
+           {winners ? winners.length > 1 ? <div>There is a tie between {winners.map((player) => <span> {player.player_name}</span> )}</div>
+           : `The Winner is ${winners[0].player_name}`
            : "Loading"}
 
            
