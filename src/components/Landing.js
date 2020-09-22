@@ -21,7 +21,19 @@ const Landing = () =>{
     }
   }
 
-
+  const arr = [
+    {
+    name: 'player 7',
+    score: 33
+    },
+    {
+      name: 'player 14',
+      score: 33
+      },
+    ]
+    
+    
+    
   return(
   <div className="landing">
           

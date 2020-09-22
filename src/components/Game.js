@@ -86,10 +86,14 @@ const Game = ( props ) => {
         const handicapcScore = getHcScore(copyPlayers[id], holeIndex, e.target.value)
         const netScr = getNetScore(copyPlayers[id], holeIndex, e.target.value)
 
-        copyPlayers[id] = { ...copyPlayers[id], 
-            ...copyPlayers[id].holes[holeName] = e.target.value, 
-            ...copyPlayers[id].hcScores[holeName] = handicapcScore, 
-            ...copyPlayers[id].netScores[holeName] = netScr }
+        // copyPlayers[id] = { ...copyPlayers[id], 
+        //     ...copyPlayers[id].holes[holeName] = e.target.value, 
+        //     ...copyPlayers[id].hcScores[holeName] = handicapcScore, 
+        //     ...copyPlayers[id].netScores[holeName] = netScr }
+            
+        copyPlayers[id].holes[holeName] = e.target.value
+        copyPlayers[id].hcScores[holeName] = handicapcScore
+        copyPlayers[id].netScores[holeName] = netScr
 
         setPlayers(copyPlayers)
         giveMeScore(copyPlayers, id)
@@ -105,8 +109,33 @@ const Game = ( props ) => {
  
     async function handleSubmit (e){
         e.preventDefault()
+        const sendData = []
+
+        players.forEach((p) =>{
+            if (p.name){
+                sendData.push(
+                    {
+                    player_id : p.id,
+                    holes_played : 9,
+                    hc_score : p.hc_score,
+                    gross_score : p.gross_score,
+                    net_score : p.net_score,
+                    hole1 : p.holes.hole1,
+                    hole2 : p.holes.hole2,
+                    hole3 : p.holes.hole3,
+                    hole4 : p.holes.hole4,
+                    hole5 : p.holes.hole5,
+                    hole6 : p.holes.hole6,
+                    hole7 : p.holes.hole7,
+                    hole8 : p.holes.hole8,
+                    hole9 : p.holes.hole9,
+                    
+                    }
+                )
+        }
+        })
         try{
-            let res = await axios.post(`https://hcesperanzino.herokuapp.com/games/${gameId}`, players)
+            await axios.post(`https://hcesperanzino.herokuapp.com/games/${gameId}/gameinfo`, sendData)
             props.history.push('/postgame')
           }  
           catch(err){
@@ -114,7 +143,6 @@ const Game = ( props ) => {
           }
     }
 
-    console.log(buttonClicks)
 
     return (
         <div>
