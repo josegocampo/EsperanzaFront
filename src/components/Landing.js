@@ -1,35 +1,64 @@
-import React, {useState} from 'react'
+import React, { useContext } from 'react'
 import cancha from '../images/cancha.jpg'
-import usga from '../images/usga-logo.png'
-import esperanza from '../images/esperanza.png'
-import S, {keyframes} from 'styled-components'
+import axios from "axios";
 import {BrowserRouter as Router, Link} from 'react-router-dom'
+import GameIdContext from './GameIdContext';
+import S, {keyframes} from 'styled-components'
+import esperanza from '../images/esperanza.png'
 
 const Landing = () =>{
-
-
-return(
-<div className="landing">
-        
-  <Main>
-  <Title><img src={esperanza} className="oak"/></Title>
-      <Content>
-          
-              <Buttons>
-          
-                <Link to="/gameup" style={{ textDecoration: 'none' }}><Button><div className="text">Ingresar un Score</div></Button></Link>
-                <Button><div className="text">Revisar Juegos pasados</div ></Button>
-                <Button><div className="text">Revisar Estadisticas</div ></Button>
   
-              </Buttons>  
-             
-      </Content>
+  const { gameId, setGameId } = useContext(GameIdContext)
   
-   
-  </Main>
-</div>
+  async function newGame () {
+    try{
+      let res = await axios.post(`https://hcesperanzino.herokuapp.com/games`)
+      let id = res.data
+      setGameId(id[0])
+    }  
+    catch(err){
+      console.log(err)
+    }
+  }
 
-)
+  const arr = [
+    {
+    name: 'player 7',
+    score: 33
+    },
+    {
+      name: 'player 14',
+      score: 33
+      },
+    ]
+    
+    
+    
+  return(
+  <div className="landing">
+          
+    <Main>
+    <Title><img src={esperanza} className="oak"/></Title>
+        <Content>
+            
+                <Buttons>
+            
+                  <Link to="/newgame" style={{ textDecoration: 'none' }}>
+                    <Button onClick={newGame}><div className="text">New Game</div></Button>
+                  </Link>
+                  <Button><div className="text">Statistics</div ></Button>
+                  <Button><div className="text">Game History</div ></Button>
+                  
+    
+                </Buttons>  
+              
+        </Content>
+    
+    
+    </Main>
+  </div>
+
+  )
 }
 
 export default Landing;
@@ -100,6 +129,7 @@ const Title = S.h1`
   text-align: center;
   z-index: 100;
   background-image: linear-gradient(transparent 50%,#f6f5f0 50%);
+  
 
 
 `
