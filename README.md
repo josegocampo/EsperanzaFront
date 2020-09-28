@@ -1,8 +1,7 @@
 
-
-<div style="text-align:center"><img src="https://i.ibb.co/MfSYcQr/lelogo.png" /></div>
+<p align="center"><img src="https://i.ibb.co/MfSYcQr/lelogo.png" /></p>
 <br/>
-<div style="text-align:center"><a href="https://github.com/josegocampo/hcEsperanzino"><img src="https://img.shields.io/badge/backend-ready%20-brightgreen"/></a> <img src="https://img.shields.io/badge/frontend-in%20development-yellowgreen" /> <img src="https://img.shields.io/badge/mobile%20version-pending-yellow" /></div>
+<p align="center"><a href="https://github.com/josegocampo/hcEsperanzino"><img src="https://img.shields.io/badge/backend-ready%20-brightgreen"/></a> <img src="https://img.shields.io/badge/frontend-in%20development-yellowgreen" /> <img src="https://img.shields.io/badge/mobile%20version-pending-yellow" /></p>
 <br/>
 
 This is the Web Application for "La Esperanza" Golf Club. It allows the players of the club to login to their users, start a new game with their partners in it, use a score card that will automatically calculate the different types of scores in accordance to the new [USGA Rules of Handicapping](https://www.usga.org/handicapping/roh/2020-rules-of-handicapping.html) , submit their scores, update players handicaps, have statistics tracking for all the players of the club, and also allow them to see previous game history. 
@@ -23,12 +22,15 @@ The BackEnd is hosted on Heroku and you can find the repository [here](https://g
 
 ## In App Screenshots
 
-<div style="text-align:center"><img src="https://i.ibb.co/3p1rHnZ/hchc.png"/> </div>
-
+<p align="center">
+  <img src="https://i.ibb.co/3p1rHnZ/hchc.png"/>
+</p>
 
 <br/>
 
-<div style="text-align:center"><img src="https://i.ibb.co/XJtWd3w/hc-esp-2.png"/></div>
+<p align="center">
+  <img src="https://i.ibb.co/XJtWd3w/hc-esp-2.png"/>
+</p>
 
 
-
+##### More info on the App on the Spanish version of my site >> [App de Golf la Esperanza](https://www.joseocampo.org/esperanza) <<
