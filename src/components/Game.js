@@ -5,7 +5,7 @@ import GameIdContext from './GameIdContext';
 import PlayersDataContext from './PlayersDataContext'
 import S from 'styled-components'
 import data from '../mockdata'
-
+import '../App.css'
 
 
 
@@ -151,7 +151,7 @@ const Game = ( props ) => {
         <div>
             <Card onSubmit={buttonClicks ? handleSubmit : showAlert} >
     
-                <NameRow className="hole"> <Box >Hole</Box><Box>Par</Box>{players.map(p => <Box>{p.player_name}</Box>)}</NameRow>
+                <NameRow> <Box >Hole</Box><Box>Par</Box>{players.map(p => <Box>{p.player_name}</Box>)}</NameRow>
                 <Bottom>
 
                     {rows.map((row, rowIndex) => {
@@ -202,7 +202,6 @@ const Card = S.form`
  flex-direction: column;
  justify-content: center;
  align-items: center;
- background: #fbfaf4;
 `
 
 const Bottom = S.form`
