@@ -47,7 +47,7 @@ const Landing = () =>{
                     <Button onClick={newGame}><div className="text">New Game</div></Button>
                   </Link>
                   <Button><div className="text">Statistics</div ></Button>
-                  <Button><div className="text">Game History</div ></Button>
+                 <Button><div className="text">Game History</div ></Button> 
                   
     
                 </Buttons>  

@@ -31,3 +31,6 @@ The BackEnd is hosted on Heroku and you can find the repository [here](https://g
 <p align="center">
   <img src="https://i.ibb.co/XJtWd3w/hc-esp-2.png"/>
 </p>
+
+
+##### More info on the App on the Spanish version of my site >> [App de Golf la Esperanza](https://www.joseocampo.org/esperanza) <<

@@ -5,7 +5,7 @@ import GameIdContext from './GameIdContext';
 import PlayersDataContext from './PlayersDataContext'
 import S from 'styled-components'
 import data from '../mockdata'
-
+import '../App.css'
 
 
 
@@ -23,7 +23,7 @@ const Game = ( props ) => {
         const playersCopy = [...players]
         selectedPlayers.map((player, ix) => {
         playersCopy[ix].id = player.id;
-        playersCopy[ix].name = player.name
+        playersCopy[ix].player_name = player.name
         })
         setPlayers(playersCopy)
         }, 
@@ -112,10 +112,11 @@ const Game = ( props ) => {
         const sendData = []
 
         players.forEach((p) =>{
-            if (p.name){
+            if (p.player_name){
                 sendData.push(
                     {
                     player_id : p.id,
+                    player_name : p.player_name,
                     holes_played : 9,
                     hc_score : p.hc_score,
                     gross_score : p.gross_score,
@@ -134,6 +135,8 @@ const Game = ( props ) => {
                 )
         }
         })
+        console.log(players)
+        console.log(sendData)
         try{
             await axios.post(`https://hcesperanzino.herokuapp.com/games/${gameId}/gameinfo`, sendData)
             props.history.push('/postgame')
@@ -148,7 +151,7 @@ const Game = ( props ) => {
         <div>
             <Card onSubmit={buttonClicks ? handleSubmit : showAlert} >
     
-                <NameRow className="hole"> <Box >Hole</Box><Box>Par</Box>{players.map(p => <Box>{p.name}</Box>)}</NameRow>
+                <NameRow> <Box >Hole</Box><Box>Par</Box>{players.map(p => <Box>{p.player_name}</Box>)}</NameRow>
                 <Bottom>
 
                     {rows.map((row, rowIndex) => {
@@ -199,7 +202,6 @@ const Card = S.form`
  flex-direction: column;
  justify-content: center;
  align-items: center;
- background: #fbfaf4;
 `
 
 const Bottom = S.form`
@@ -271,7 +273,7 @@ const rows = [1, 2, 3, 4, 5, 6]
 const playas = [
     {
         id: "",
-        name: "",
+        player_name: "",
         handicap: "",
         holes: {
             hole1: '',
@@ -312,7 +314,7 @@ const playas = [
     },
     {
         id: "",
-        name: "",
+        player_name: "",
         handicap: " "
         ,
         holes: {
@@ -354,7 +356,7 @@ const playas = [
     },
     {
         id: "",
-        name: "",
+        player_name: "",
         handicap: ""
         ,
         holes: {
@@ -396,7 +398,7 @@ const playas = [
     },
     {
         id: '',
-        name: "",
+        player_name: "",
         handicap: ''
         ,
         holes: {
