@@ -53,8 +53,7 @@ const NewGame = () => {
       
         }
     }
-    //this function will take care of removing players from the display and adding them
-    //back to the dropdown
+
     const handleDelete = (player) => {
         const copySelectedPlayers = [...selectedPlayers]
         copySelectedPlayers.map((p, i) => {
