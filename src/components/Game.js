@@ -1,15 +1,16 @@
 import axios from "axios";
 import React, { useEffect, useState, useContext } from 'react'
-import {BrowserRouter as Router, Link} from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import GameIdContext from './GameIdContext';
 import PlayersDataContext from './PlayersDataContext'
 import S from 'styled-components'
 import data from '../mockdata'
 import '../App.css'
+import esperanza from '../images/esperanza.png'
 
 
 
-const Game = ( props ) => {
+const Game = (props) => {
 
     const { selectedPlayers, setSelectedPlayers } = useContext(PlayersDataContext)
 
@@ -17,19 +18,19 @@ const Game = ( props ) => {
 
     const [players, setPlayers] = useState(playas)
 
-    const [ buttonClicks, setButtonClicks ] = useState(false)
+    const [buttonClicks, setButtonClicks] = useState(false)
 
     useEffect(() => {
         const playersCopy = [...players]
         selectedPlayers.map((player, ix) => {
-        playersCopy[ix].id = player.id;
-        playersCopy[ix].player_name = player.name
+            playersCopy[ix].id = player.id;
+            playersCopy[ix].player_name = player.name
         })
         setPlayers(playersCopy)
-        }, 
+    },
         [])
 
-    
+
 
     const giveMeScore = (copyPlayers, id) => {
         const { holes, hcScores, netScores } = copyPlayers[id]
@@ -90,7 +91,7 @@ const Game = ( props ) => {
         //     ...copyPlayers[id].holes[holeName] = e.target.value, 
         //     ...copyPlayers[id].hcScores[holeName] = handicapcScore, 
         //     ...copyPlayers[id].netScores[holeName] = netScr }
-            
+
         copyPlayers[id].holes[holeName] = e.target.value
         copyPlayers[id].hcScores[holeName] = handicapcScore
         copyPlayers[id].netScores[holeName] = netScr
@@ -105,90 +106,96 @@ const Game = ( props ) => {
         alert('Are you sure scores are ok?')
         setButtonClicks(+1)
     }
-    
- 
-    async function handleSubmit (e){
+
+
+    async function handleSubmit(e) {
         e.preventDefault()
         const sendData = []
 
-        players.forEach((p) =>{
-            if (p.player_name){
+        players.forEach((p) => {
+            if (p.player_name) {
                 sendData.push(
                     {
-                    player_id : p.id,
-                    player_name : p.player_name,
-                    holes_played : 9,
-                    hc_score : p.hc_score,
-                    gross_score : p.gross_score,
-                    net_score : p.net_score,
-                    hole1 : p.holes.hole1,
-                    hole2 : p.holes.hole2,
-                    hole3 : p.holes.hole3,
-                    hole4 : p.holes.hole4,
-                    hole5 : p.holes.hole5,
-                    hole6 : p.holes.hole6,
-                    hole7 : p.holes.hole7,
-                    hole8 : p.holes.hole8,
-                    hole9 : p.holes.hole9,
-                    
+                        player_id: p.id,
+                        player_name: p.player_name,
+                        holes_played: 9,
+                        hc_score: p.hc_score,
+                        gross_score: p.gross_score,
+                        net_score: p.net_score,
+                        hole1: p.holes.hole1,
+                        hole2: p.holes.hole2,
+                        hole3: p.holes.hole3,
+                        hole4: p.holes.hole4,
+                        hole5: p.holes.hole5,
+                        hole6: p.holes.hole6,
+                        hole7: p.holes.hole7,
+                        hole8: p.holes.hole8,
+                        hole9: p.holes.hole9,
+
                     }
                 )
-        }
+            }
         })
         console.log(players)
         console.log(sendData)
-        try{
+        try {
             await axios.post(`https://hcesperanzino.herokuapp.com/games/${gameId}/gameinfo`, sendData)
             props.history.push('/postgame')
-          }  
-          catch(err){
+        }
+        catch (err) {
             console.log(err)
-          }
+        }
     }
 
 
     return (
         <div>
             <Card onSubmit={buttonClicks ? handleSubmit : showAlert} >
-    
-                <NameRow> <Box >Hole</Box><Box>Par</Box>{players.map(p => <Box>{p.player_name}</Box>)}</NameRow>
-                <Bottom>
+                <Title><img src={esperanza} className="oak" /></Title>
+                <div style={{ borderLeft: '1px solid darkgrey' }}>
+                    <NameRow> 
+                        <Hole className="card" style={{ height: 35 }}>Hole</Hole>
+                        <Box className="card" style={{ height: 35 }} >Par</Box>
+                        {players.map(p => <Box className="hole" style={{ height: 35 }} >{p.player_name}</Box>)}
+                    </NameRow>
+                    <Bottom>
 
-                    {rows.map((row, rowIndex) => {
-                        return <Column>
-                            {holes.map((hole, holeIndex) => {
-                                if (rowIndex === 0) {
-                                    return <Box className="hole">{hole.number}</Box>
-                                }
-                                if (rowIndex === 1) {
-                                    return <Box className="hole">{hole.par}</Box>
-                                }
-                                else {
-                                    const player = players[rowIndex - 2].holes
-                                    const holeName = hole.name
-                                    const playerHole = player[holeName]
-                                    return <Box key={holeIndex}>
-                                        <Input
+                        {rows.map((row, rowIndex) => {
+                            return <Column>
+                                {holes.map((hole, holeIndex) => {
+                                    if (rowIndex === 0) {
+                                        return <Hole className="card">{hole.number}</Hole>
+                                    }
+                                    if (rowIndex === 1) {
+                                        return <Box className="card">{hole.par}</Box>
+                                    }
+                                    else {
+                                        const player = players[rowIndex - 2].holes
+                                        const holeName = hole.name
+                                        const playerHole = player[holeName]
+                                        return <Box key={holeIndex}>
+                                            <Input
 
-                                            id={rowIndex - 2}
-                                            className={holeMax(players[0], holeIndex, playerHole) ? 'hole red' : 'hole'}
-                                            type="text"
-                                            onChange={e => handlePlayers(e, holeIndex)}
-                                            name={hole.name}
-                                            value={playerHole}
+                                                id={rowIndex - 2}
+                                                className={holeMax(players[0], holeIndex, playerHole) ? 'hole red' : 'hole'}
+                                                type="card"
+                                                onChange={e => handlePlayers(e, holeIndex)}
+                                                name={hole.name}
+                                                value={playerHole}
 
-                                        ></Input>
-                                    </Box>
-                                }
-                            })}
-                        </Column>
-                    })}
-                </Bottom>
-                <NameRow> <Box></Box><Box className="hole">Gross</Box>{players.map(e => <Box className="hole">{e.gross_score}</Box>)}</NameRow>
-                <NameRow> <Box ></Box><Box className="hole">Net</Box>{players.map(e => <Box className="hole">{e.net_score}</Box>)}</NameRow>
-                <NameRow> <Box ></Box><Box className="hole">Hc</Box>{players.map(e => <Box className="hole">{e.hc_score}</Box>)}</NameRow>
+                                            ></Input>
+                                        </Box>
+                                    }
+                                })}
+                            </Column>
+                        })}
+                    </Bottom>
+                    <ScoreRow> <Hole className="card"></Hole><Box className="card">Gross</Box>{players.map(e => <Box className="hole">{e.gross_score}</Box>)}</ScoreRow>
+                    <ScoreRow> <Hole className="card"></Hole><Box className="card">Net</Box>{players.map(e => <Box className="hole">{e.net_score}</Box>)}</ScoreRow>
+                    <ScoreRow> <Hole className="card"></Hole><Box className="card">Hc</Box>{players.map(e => <Box className="hole">{e.hc_score}</Box>)}</ScoreRow>
+                </div>
+                <Button className="card" style={buttonClicks ? { background: 'purple' } : { background: 'green' }} >Continue</Button>
 
-                <button>Continue</button>
             </Card>
         </div>
 
@@ -197,61 +204,99 @@ const Game = ( props ) => {
 }
 
 const Card = S.form`
- margin-top: 20px;
- display: flex;
- flex-direction: column;
- justify-content: center;
- align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`
+
+const Title = S.h1`
+    font-size: 35px;
+    font-weight: 400;
+    width: 100%; 
+    height: 100px;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: #edece3;
+    background-position: 0 100%;
+    background-size: 100% 2px;
+    border-bottom: 3px solid #762417c4;
+    card-align: center;
+    z-index: 100;
+    background-image: linear-gradient(transparent 50%,#f6f5f0 50%);
+    padding-bottom: 10px;
 `
 
 const Bottom = S.form`
- display: flex;
- flex-direction: row;
- justify-content: flex-start;
- align-items: flex-start;
-
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
 `
 
 const NameRow = S.div`
- height: 44px;
- display: flex;
- flex-direction: row;
- justify-content: flex-start;
- align-items: center;
- 
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 `
+const ScoreRow = S.div`
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+`
+
 const Column = S.div`
- display: flex;
- flex-direction: column;
- align-items: flex-end;
- justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
 `
 
 const Box = S.div`
- height: 44px;
- width: 50px;
- font-size: 11px;
- display: flex;
- align-items: center;
- justify-content: center;
- border: 1px solid black;
+    height: 35px;
+    width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid darkgrey;
+    border-right: 1px solid darkgrey;
 `
 
+const Hole = S.div`
+    height: 35px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid darkgrey;
+    border-right: 1px solid darkgrey;
+`
 
 const Input = S.input`
-height: 35px;
-width: 30px;
-border:none;
-text-align: center;
-background: transparent;
+    height: 35px;
+    width: 30px;
+    border:none;
+    card-align: center;
+    background: transparent;
 `
 
-const Row = S.div`
- height: 44px;
- display: flex;
- flex-direction: row;
- justify-content: flex-start;
- align-items: center;
+const Button = S.button`
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    font-weight: 600;
+    margin-top: 20px;
+    color: white;
 `
 
 

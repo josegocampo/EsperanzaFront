@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Exo+2:600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Marck+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Peddana&display=swap');
 
 .App {
   text-align: center;
@@ -8,6 +10,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.spc{
+  font-size: 1.1rem;
+  font-family: 'Peddana', serif;
+  font-weight: 600;
+}
+
+.h{
+  width: 30px;
 }
 
 .App-logo {
@@ -32,9 +44,6 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
 @keyframes App-logo-spin {
   from {
@@ -47,17 +56,24 @@
 .text{
   font-family: 'Exo 2', sans-serif;
 }
+ .card{
+  font-family: 'Libre Baskerville', serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #94554a;
+}
 
 .hole{
   outline-color: transparent;
   -webkit-appearance: none; box-shadow: none !important;
   outline-style: none;
-  font-family: 'Exo 2', sans-serif;
   display: flex;
   text-align: center;
   color: black;
+  font-family: 'Marck Script', cursive;
+  font-size: 1.1rem;
+  font-weight: 400;
 }
-
 
 .logo{
  width: 30px;
@@ -79,5 +95,5 @@
 }
 
 .red{
-  color: red;
+  color: #f55f5f
 }
