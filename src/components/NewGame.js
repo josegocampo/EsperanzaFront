@@ -6,6 +6,7 @@ import S from 'styled-components';
 import esperanza from '../images/esperanza.png'
 
 
+
 const NewGame = () => {
 
     const [playersData, setPlayersData] = useState()
@@ -106,6 +107,7 @@ const Card = S.form`
     background: #edece3;
     height: 550px;
 `
+
 const Title = S.h1`
     font-size: 35px;
     font-weight: 400;

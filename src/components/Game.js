@@ -136,8 +136,6 @@ const Game = (props) => {
                 )
             }
         })
-        console.log(players)
-        console.log(sendData)
         try {
             await axios.post(`https://hcesperanzino.herokuapp.com/games/${gameId}/gameinfo`, sendData)
             props.history.push('/postgame')
