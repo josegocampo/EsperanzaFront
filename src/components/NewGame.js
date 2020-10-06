@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Link } from 'react-router-dom';
 import PlayersDataContext from './PlayersDataContext';
 import S from 'styled-components';
 import esperanza from '../images/esperanza.png'
+import close from '../images/close.png'
 
 
 
@@ -75,24 +76,29 @@ const NewGame = () => {
     return (
         <Card onSubmit={handleSubmit}>
             <Title><img src={esperanza} className="oak" /></Title>
-            <h3 className="title">SELECT THE PLAYERS</h3>
+            <h3 className="title">Please select the players</h3>
             <DropDown>
                 {selectedPlayers.length >= 4 ? null :
                     <Select name="players" onChange={handleSelect} className="card" autofocus="disabled">
-                        <option value="nope" selected>--</option>
+                        <option value="nope" selected>Pick 2 to 4 players</option>
                         {playersData ? playersData.map((p) =>
                             <option value={p.id} id={p.name} className="card">{p.name}</option>) :
                             <h2>Waiting for Players Data</h2>}
                     </Select>}
             </DropDown>
             <Selected>
-                {selectedPlayers.map((p) => <PDisplay className="card">{p.name} <button style={{ width: 30 }}
-                    onClick={() => { handleDelete(p) }}> X </button></PDisplay>)}
+                {selectedPlayers.map((p) => 
+                    <Row className="card">{p.name} 
+                        <img src={close} style={{ width: 15, marginLeft: 5 }} onClick={() => { handleDelete(p) }} />
+                    </Row>)
+                    }
             </Selected>
             <Bottom>
                 {selectedPlayers && selectedPlayers.length >= 2 && selectedPlayers.length < 5 ?
-                    <Link to="/game" tyle={{ textDecoration: 'none' }}><Continue className="continue">Continue to Game</Continue></Link>
-                    : <Warning className="hole">Please select 2 to 4 players to proceed!</Warning>}
+                    <Link to="/game" tyle={{ textDecoration: 'none' }}>
+                        <Continue className="continue">Continue to Game</Continue>
+                    </Link>
+                    : <Warning className="hole">Minimum of 2 players</Warning>}
 
             </Bottom>
         </Card>
@@ -100,12 +106,12 @@ const NewGame = () => {
 }
 
 const Card = S.form`
-    width: 373px;
+    width: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #edece3;
-    height: 550px;
+    height: 500px;
+    border: 1px solid black;
 `
 
 const Title = S.h1`
@@ -130,20 +136,22 @@ const Title = S.h1`
 
 const DropDown = S.div`
     width: 200px;
-    height: 20px;
 `
 const Select = S.select`
     width: 150px;
 `
 const Selected = S.div`
     height: 200px;
-
 `
 
-const PDisplay = S.div`
+const Row = S.div`
     margin-top: 10px;
     width: 200px;
+    height: 30px;
+    display: flex;
     text-align: center;
+    align-items: center;
+    justify-content: center;
 `
 
 const Bottom = S.div`
@@ -155,9 +163,10 @@ const Continue = S.button`
     height: 50px;
     border-radius: 5px;
     border: none;
-    background: rgb(48 134 48);
+    background: rgb(48 178 90);
     font-weight: 500;
     color: white;
+    
 `
 
 const Warning = S.div`
