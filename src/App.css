@@ -101,3 +101,28 @@
 .odd{
   background: #d6e7fc;
 }
+
+.bigcard{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.winner{
+  height: 200px;
+  width: 180px;
+  margin-left: 50px;
+  top: 250px;
+  position: absolute;
+  z-index: 20;
+  border: 2px solid #762417c4;;
+  background: #edece3;
+  color: #762417c4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button:hover{
+  cursor: pointer;
+}

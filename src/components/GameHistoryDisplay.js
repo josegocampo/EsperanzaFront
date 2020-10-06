@@ -44,7 +44,7 @@ const GameHistoryDisplay = ( props ) => {
                 <Title><img src={esperanza} className="oak" /></Title>
                 { playerGames ? keyz.map(( key, index ) => {
                     return <Row className={ index % 2 != 0 ? "odd" : null }>
-                               # {key} <Dt>{dateFunc(playerGames[key][0].created_at)}</Dt>
+                             <Dt>{dateFunc(playerGames[key][0].created_at)}</Dt>
                             <Players> { playerGames[key].map( player => 
                                     <Player> <div>{player.player_name} </div><div>{player.net_score}</div> </Player>)}
                             </Players>
@@ -58,7 +58,7 @@ const GameHistoryDisplay = ( props ) => {
 
 const Card = S.div`
     height: 500px;
-    width: 372px;
+    width: 300px;
     color: brown;
     border: 1px solid black;
 `
@@ -95,16 +95,17 @@ const Row = S.div`
 `
 const Dt = S.div`
     font-size: 0.5rem;
+    padding-left: 3px;
 `
 
 const Players = S.div`
     display: flex;
     flex-direction: row;
-    width: 70%;
+    width: 90%;
     align-items: flex-start;
 `
 const Player = S.div`
-    width: 50px;
+    width: 45px;
     margin-left: 10px;
     display: flex;
     flex-direction: column;

@@ -7,6 +7,8 @@ import S from 'styled-components'
 import data from '../mockdata'
 import '../App.css'
 import esperanza from '../images/esperanza.png'
+import crown from '../images/crown.png'
+import { findByLabelText } from "@testing-library/react";
 
 
 
@@ -19,6 +21,10 @@ const Game = (props) => {
     const [players, setPlayers] = useState(playas)
 
     const [buttonClicks, setButtonClicks] = useState(false)
+
+    const [sent, setSent] = useState(false)
+
+    const [finished, setFinished] = useState(false)
 
     useEffect(() => {
         const playersCopy = [...players]
@@ -137,21 +143,54 @@ const Game = (props) => {
             }
         })
         try {
+            setSent(true)
+            setFinished(true)
             await axios.post(`https://hcesperanzino.herokuapp.com/games/${gameId}/gameinfo`, sendData)
-            props.history.push('/postgame')
+
+            // props.history.push('/postgame')
         }
         catch (err) {
             console.log(err)
         }
     }
 
+    const getWinners = () => {
+        const sortedPlayers = players.sort((a, b) => {
+            return a.net_score - b.net_score
+        })
+        const winners = sortedPlayers.filter((player) =>
+            player.net_score === sortedPlayers[0].net_score)
+
+        return (
+            <div className="winner">
+                { winners ? 
+                    winners.length > 1 ? 
+                        <div>There is a tie between {winners.map((player) => 
+                            <span> {player.player_name}</span>)}</div>
+                        : <Winner>
+                                <Cross><CrossBtn onClick={handleFinished}>x</CrossBtn></Cross>
+                                <Name>The Winner is 
+                                    <span style={{
+                                        borderBottom: '2px solid purple', fontWeight: 600, marginLeft: 5, marginRight: 7
+                                    }}>{winners[0].player_name}</span>
+                                    <img src={crown} style={{width: 20}}></img>
+                                </Name>
+                           </Winner>
+                    : "Loading" }
+            </div>)
+    }
+
+    const handleFinished = () => {
+        setFinished(false)
+    }
 
     return (
-        <div>
+        <div className="bigcard">
+            { finished ? <div>{getWinners()}</div> : null}
             <Card onSubmit={buttonClicks ? handleSubmit : showAlert} >
                 <Title><img src={esperanza} className="oak" /></Title>
                 <div style={{ borderLeft: '1px solid darkgrey' }}>
-                    <NameRow> 
+                    <NameRow>
                         <Hole className="card" style={{ height: 35 }}>Hole</Hole>
                         <Box className="card" style={{ height: 35 }} >Par</Box>
                         {players.map(p => <Box className="hole" style={{ height: 35 }} >{p.player_name}</Box>)}
@@ -192,7 +231,9 @@ const Game = (props) => {
                     <ScoreRow> <Hole className="card"></Hole><Box className="card">Net</Box>{players.map(e => <Box className="hole">{e.net_score}</Box>)}</ScoreRow>
                     <ScoreRow> <Hole className="card"></Hole><Box className="card">Hc</Box>{players.map(e => <Box className="hole">{e.hc_score}</Box>)}</ScoreRow>
                 </div>
-                <Button className="card" style={buttonClicks ? { background: 'purple' } : { background: 'green' }} >Continue</Button>
+                {sent ? <Link to="/" style={{ textDecoration: 'none' }}><Button style={{background: 'lightblue', border: '2px solid blue'}}>End</Button></Link> :
+                    <Button className="card" style={buttonClicks ? { background: 'rgb(15 104 44)' } : { background: 'rgb(48 178 90)' }} >Continue</Button>
+                }
 
             </Card>
         </div>
@@ -296,7 +337,43 @@ const Button = S.button`
     margin-top: 20px;
     color: white;
 `
+const Winner = S.div`
+    display: flex;
+    flex-direction: column;
+    height: 95%;
+`
 
+const Cross = S.div`
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-top: 7px;
+    margin-left: 5px;
+    font-weight: 700;
+    font-size: 0.8rem;
+`
+
+const CrossBtn = S.button`
+    border: none;
+    width: 19px;
+    height: 19px;
+    background: pink;
+    border-radius: 2px;
+    border: 2px solid purple;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+`
+
+const Name = S.div`
+    height: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
 
 const holes = [
     { name: 'hole1', number: 1, par: 4, handicap: 7 },

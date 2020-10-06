@@ -47,7 +47,9 @@ const Landing = () =>{
                     <Button onClick={newGame}><div className="text">New Game</div></Button>
                   </Link>
                   <Button><div className="text">Statistics</div ></Button>
+                  <Link to ="/gamehistory" style={{ textDecoration: 'none' }}>
                  <Button><div className="text">Game History</div ></Button> 
+                 </Link>
                   
     
                 </Buttons>  
@@ -65,7 +67,7 @@ export default Landing;
 
 const Main = S.div` 
   height: 450px;
-  width: 373px;
+  width: 300px;
   `
 const Content = S.div` 
   display: flex;
