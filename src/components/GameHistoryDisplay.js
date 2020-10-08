@@ -3,13 +3,18 @@ import Axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import S from 'styled-components'
 import esperanza from '../images/esperanza.png'
+import GameDetails from './GameDetails'
 
 
 const GameHistoryDisplay = ( props ) => {
 
     const [ playerGames, setPlayerGames ] = useState()
 
-    const [keyz, setKeyz] = useState()
+    const [ keyz, setKeyz ] = useState()
+
+    const [ gameClicked, setGameClicked ] = useState(false)
+
+    const [gameId, setGameId] = useState()
 
 
     useEffect(() =>{
@@ -37,17 +42,28 @@ const GameHistoryDisplay = ( props ) => {
         return newd
     }
 
-  
+    const handleChanges = (k) =>{
+        setGameClicked(true)
+        setGameId(k)
+    }
+
+    const hChange = () =>{
+        setGameClicked(false)
+    }
+
     return (
-      <div>
-            <Card className="card">
+      <div> 
+           
+            <Card className="card" >
                 <Title><img src={esperanza} className="oak" /></Title>
-                { playerGames ? keyz.map(( key, index ) => {
+                {gameClicked ? <GameDetails id={gameId} btn={hChange}/> : 
+                 playerGames ? keyz.map(( key, index ) => {
                     return <Row className={ index % 2 != 0 ? "odd" : null }>
                              <Dt>{dateFunc(playerGames[key][0].created_at)}</Dt>
                             <Players> { playerGames[key].map( player => 
                                     <Player> <div>{player.player_name} </div><div>{player.net_score}</div> </Player>)}
                             </Players>
+                            <button onClick={() => handleChanges(key)}>X</button>
                         </Row>
                 }) : "loading"}
         </Card>
@@ -60,7 +76,11 @@ const Card = S.div`
     height: 500px;
     width: 300px;
     color: brown;
-    border: 1px solid black;
+    border: 8px solid black;
+    border-top: 30px solid black;
+    border-radius: 10px;
+    padding: 3px;
+
 `
 
 const Title = S.h1`

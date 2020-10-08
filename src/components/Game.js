@@ -4,11 +4,10 @@ import { BrowserRouter as Router, Link } from 'react-router-dom';
 import GameIdContext from './GameIdContext';
 import PlayersDataContext from './PlayersDataContext'
 import S from 'styled-components'
-import data from '../mockdata'
 import '../App.css'
 import esperanza from '../images/esperanza.png'
 import crown from '../images/crown.png'
-import { findByLabelText } from "@testing-library/react";
+import { holes, rows, playas} from './mockdata'
 
 
 
@@ -153,7 +152,8 @@ const Game = (props) => {
             console.log(err)
         }
     }
-
+    // I wanna extract get Winners afterwards into its own component
+    //or at least the return of it, I should build a new component for that
     const getWinners = () => {
         const sortedPlayers = players.sort((a, b) => {
             return a.net_score - b.net_score
@@ -375,192 +375,6 @@ const Name = S.div`
     justify-content: center;
 `
 
-const holes = [
-    { name: 'hole1', number: 1, par: 4, handicap: 7 },
-    { name: 'hole2', number: 2, par: 5, handicap: 6 },
-    { name: 'hole3', number: 3, par: 4, handicap: 8 },
-    { name: 'hole4', number: 4, par: 3, handicap: 8 },
-    { name: 'hole5', number: 5, par: 4, handicap: 2 },
-    { name: 'hole6', number: 6, par: 5, handicap: 4 },
-    { name: 'hole7', number: 7, par: 4, handicap: 1 },
-    { name: 'hole8', number: 8, par: 3, handicap: 9 },
-    { name: 'hole9', number: 9, par: 4, handicap: 3 },
-
-]
-
-const rows = [1, 2, 3, 4, 5, 6]
-
-const playas = [
-    {
-        id: "",
-        player_name: "",
-        handicap: "",
-        holes: {
-            hole1: '',
-            hole2: '',
-            hole3: '',
-            hole4: '',
-            hole5: '',
-            hole6: '',
-            hole7: '',
-            hole8: '',
-            hole9: '',
-
-        },
-        hcScores: {
-            hole1: '',
-            hole2: '',
-            hole3: '',
-            hole4: '',
-            hole5: '',
-            hole6: '',
-            hole7: '',
-            hole8: '',
-            hole9: '',
-
-        },
-        netScores: {
-            hole1: '',
-            hole2: '',
-            hole3: '',
-            hole4: '',
-            hole5: '',
-            hole6: '',
-            hole7: '',
-            hole8: '',
-            hole9: '',
-
-        }
-    },
-    {
-        id: "",
-        player_name: "",
-        handicap: " "
-        ,
-        holes: {
-            hole1: '',
-            hole2: '',
-            hole3: '',
-            hole4: '',
-            hole5: '',
-            hole6: '',
-            hole7: '',
-            hole8: '',
-            hole9: '',
-
-        },
-        hcScores: {
-            hole1: '',
-            hole2: '',
-            hole3: '',
-            hole4: '',
-            hole5: '',
-            hole6: '',
-            hole7: '',
-            hole8: '',
-            hole9: '',
-
-        },
-        netScores: {
-            hole1: '',
-            hole2: '',
-            hole3: '',
-            hole4: '',
-            hole5: '',
-            hole6: '',
-            hole7: '',
-            hole8: '',
-            hole9: '',
-
-        }
-    },
-    {
-        id: "",
-        player_name: "",
-        handicap: ""
-        ,
-        holes: {
-            hole1: '',
-            hole2: '',
-            hole3: '',
-            hole4: '',
-            hole5: '',
-            hole6: '',
-            hole7: '',
-            hole8: '',
-            hole9: '',
-
-        },
-        hcScores: {
-            hole1: '',
-            hole2: '',
-            hole3: '',
-            hole4: '',
-            hole5: '',
-            hole6: '',
-            hole7: '',
-            hole8: '',
-            hole9: '',
-
-        },
-        netScores: {
-            hole1: '',
-            hole2: '',
-            hole3: '',
-            hole4: '',
-            hole5: '',
-            hole6: '',
-            hole7: '',
-            hole8: '',
-            hole9: '',
-
-        }
-    },
-    {
-        id: '',
-        player_name: "",
-        handicap: ''
-        ,
-        holes: {
-            hole1: '',
-            hole2: '',
-            hole3: '',
-            hole4: '',
-            hole5: '',
-            hole6: '',
-            hole7: '',
-            hole8: '',
-            hole9: '',
-
-        },
-        hcScores: {
-            hole1: '',
-            hole2: '',
-            hole3: '',
-            hole4: '',
-            hole5: '',
-            hole6: '',
-            hole7: '',
-            hole8: '',
-            hole9: '',
-
-        },
-        netScores: {
-            hole1: '',
-            hole2: '',
-            hole3: '',
-            hole4: '',
-            hole5: '',
-            hole6: '',
-            hole7: '',
-            hole8: '',
-            hole9: '',
-
-        }
-    },
-
-
-]
 
 export default Game
 
