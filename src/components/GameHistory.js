@@ -21,15 +21,11 @@ const GameHistory = () => {
     }, [])
 
 
-
-
     return (
                     <div><GameHistoryDisplay data={gameHistory}/></div>
     )
 
 }
-
-
 
 
 export default GameHistory;

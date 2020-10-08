@@ -68,6 +68,7 @@ export default Landing;
 const Main = S.div` 
   height: 450px;
   width: 300px;
+  
   `
 const Content = S.div` 
   display: flex;
