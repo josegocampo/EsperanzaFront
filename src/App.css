@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Marck+Script&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Peddana&display=swap');
 
+
 .App {
   text-align: center;
   margin: 0 auto;
@@ -10,11 +11,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: -apple-system , BlinkMacSystemFont , "Segoe UI" , "Roboto" , "Helvetica Neue" , "Ubuntu" , sans-serif;
 }
 
 .spc{
   font-size: 1.1rem;
-  font-family: 'Peddana', serif;
+  /* font-family: 'Peddana', serif; */
   font-weight: 600;
 }
 
@@ -61,7 +63,21 @@
   font-size: 0.8rem;
   font-weight: 600;
   color: #94554a;
+  height: 35px;
 }
+
+.selector{
+  font-weight: 500;
+  font-size: 1.7rem;
+
+}
+
+.hand-write{
+  font-family: 'Marck Script', cursive;
+  font-weight: 600;
+  color: #1d2d35;
+}
+
 
 .hole{
   outline-color: transparent;
@@ -71,8 +87,8 @@
   text-align: center;
   color: black;
   font-family: 'Marck Script', cursive;
-  font-size: 1.1rem;
-  font-weight: 400;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
 .logo{
@@ -87,7 +103,7 @@
 }
 
 .title{
-  font-family: 'Libre Baskerville', serif;
+  /* font-family: 'Libre Baskerville', serif; */
 }
 
 .continue{
@@ -99,7 +115,7 @@
 }
 
 .odd{
-  background: #d6e7fc;
+  background: #e9f3ff;
 }
 
 .bigcard{
@@ -109,20 +125,28 @@
 }
 
 .winner{
-  height: 200px;
-  width: 180px;
-  margin-left: 50px;
-  top: 250px;
+  height: 250px;
+  width: 250px;
+  margin-left: 0px;
+  top: 215px;
   position: absolute;
   z-index: 20;
   border: 2px solid #762417c4;;
-  background: #edece3;
-  color: #762417c4;
+  background: #ffedd9d1;
+  color: #72351bc4;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 600;
+  font-size: 1rem;
+
 }
 
 button:hover{
   cursor: pointer;
+}
+
+.nope{
+  color: grey;
+  font-size: 0.8rem;
 }

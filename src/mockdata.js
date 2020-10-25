@@ -6,7 +6,7 @@ const players = [
         holes: {hole1: 5}
    },
     {
-        id: 2,
+        id: 17,
         name: "Juan",
         password: "blabla",
         handicap: 15
