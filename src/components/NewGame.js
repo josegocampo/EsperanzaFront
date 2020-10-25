@@ -1,10 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState, useContext } from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import produce from 'immer';
 import PlayersDataContext from './PlayersDataContext';
 import S from 'styled-components';
 import esperanza from '../images/esperanza.png'
 import close from '../images/close.png'
+import golf from '../images/golf.png'
+import tee from '../images/tee.png'
+import tbell from '../images/tbell.png'
+
 
 
 
@@ -25,103 +30,98 @@ const NewGame = () => {
     },
         [])
 
-    //this function will take care of removing the selected players from the dropdown
-    //and add them to the display
+
     const handleSelect = (e) => {
-        if (e.target.value === "nope") {
+        const index = e.target.value
+        if (index === "nope") {
             return null
         }
-        else {
-            let copied = undefined
-            playersData.map((p, i) => {
-                if (p.id == e.target.value) {
-                    copied = p
+        else{
+            setSelectedPlayers(produce(selectedPlayers, draft =>{
+                let found = draft.findIndex(p => p.id == index) != -1 ? true : false
+                if (!found) {
+                    draft.push(playersData[playersData.findIndex(p => p.id == index)])
                 }
-            })
-            if (!selectedPlayers.length){
-                setSelectedPlayers([...selectedPlayers, copied])
-            }
-            else{
-                let itsThere = false
-                selectedPlayers.forEach(( player ) => {
-                    if ( player.id === copied.id){
-                        itsThere = true
-                    }
-                })
-                if ( !itsThere ){
-                    setSelectedPlayers([...selectedPlayers, copied])
-                }
-            }
-      
+            }))
         }
     }
 
+
     const handleDelete = (player) => {
-        const copySelectedPlayers = [...selectedPlayers]
-        copySelectedPlayers.map((p, i) => {
-            if (p.id == player.id) {
-                copySelectedPlayers.splice(i, 1)
-            }
-        })
-        setSelectedPlayers(copySelectedPlayers)
+        setSelectedPlayers(produce(selectedPlayers, draft => {
+            let index = draft.findIndex(p => p.id === player.id)
+            draft.splice(index, 1)
+        }))
     }
+    
 
     async function handleSubmit(e) {
         e.preventDefault()
     }
+    console.log(selectedPlayers)
 
-
-    console.log(playersData)
 
     return (
         <Card onSubmit={handleSubmit}>
-            <Title><img src={esperanza} className="oak" /></Title>
-            <h3 className="title">Please select the players</h3>
+
+            <Title><Logo src={esperanza} alt="logo"/></Title>
+            <Intro className="text">PLAYER SELECTION</Intro>
+
             <DropDown>
-                {selectedPlayers.length >= 4 ? null :
-                    <Select name="players" onChange={handleSelect} className="card" autofocus="disabled">
-                        <option value="nope" selected>Pick 2 to 4 players</option>
+                {selectedPlayers.length >= 4 ? <DropDown style={{fontSize:'0.8rem'}}>4 players max!</DropDown> :
+                    <Select name="players" onChange={handleSelect} className="selector" autofocus="disabled">
+                        <Option2 value="nope" className="nope" selected>select 2 to 4 players...</Option2>
                         {playersData ? playersData.map((p) =>
-                            <option value={p.id} id={p.name} className="card">{p.name}</option>) :
+                            <Option value={p.id} id={p.name} className="selector">{p.name}</Option>) :
                             <h2>Waiting for Players Data</h2>}
                     </Select>}
             </DropDown>
+
             <Selected>
-                {selectedPlayers.map((p) => 
-                    <Row className="card">{p.name} 
-                        <img src={close} style={{ width: 15, marginLeft: 5 }} onClick={() => { handleDelete(p) }} />
+                {selectedPlayers.map((p, ix) => 
+                    <Row className="hand-write">
+                        <Player>{ix+1}. {p.name}
+                        <Cross src={close} alt="close-button" onClick={() => { handleDelete(p) }} />
+                        </Player>
+                        <Handicap>Hc: 15</Handicap>
                     </Row>)
                     }
             </Selected>
-            <Bottom>
-                {selectedPlayers && selectedPlayers.length >= 2 && selectedPlayers.length < 5 ?
-                    <Link to="/game" tyle={{ textDecoration: 'none' }}>
-                        <Continue className="continue">Continue to Game</Continue>
-                    </Link>
-                    : <Warning className="hole">Minimum of 2 players</Warning>}
 
-            </Bottom>
+           
+                {selectedPlayers && selectedPlayers.length >= 2 && selectedPlayers.length < 5 ?
+                     <Bottom>
+                        
+                          <Link to="/game">
+                            <TeeBall src={tbell}/>
+                          </Link>
+                     </Bottom>
+                    : <Bottom><Tee src={tee}/></Bottom>}
+
+    
         </Card>
     )
 }
+
+export default NewGame;
 
 const Card = S.form`
     width: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 500px;
-    border: 1px solid black;
+    height: 550px;
 `
 
 const Title = S.h1`
     font-size: 35px;
     font-weight: 400;
     width: 100%; 
-    height: 100px;
+    height: 140px;
     margin-top: 0;
     color: black;
     display: flex;
+    padding-bottom: 5px;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -129,49 +129,147 @@ const Title = S.h1`
     background-position: 0 100%;
     background-size: 100% 2px;
     border-bottom: 3px solid #762417c4;
+    background-image: linear-gradient(transparent 50%,#f6f5f0 50%);
     card-align: center;
     z-index: 100;
-    background-image: linear-gradient(transparent 50%,#f6f5f0 50%);
+ 
 `
 
-const DropDown = S.div`
-    width: 200px;
+const Intro = S.div`
+    width: 70%;
+    color: #262626;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    margin-top: 30px;
 `
-const Select = S.select`
-    width: 150px;
-`
-const Selected = S.div`
-    height: 200px;
-`
-
-const Row = S.div`
-    margin-top: 10px;
-    width: 200px;
-    height: 30px;
+const PlayersLine = S.div`
     display: flex;
-    text-align: center;
-    align-items: center;
+    width: 40%;
     justify-content: center;
 `
 
-const Bottom = S.div`
-    margin-bottom: 20px;
+const DropDown = S.div`
+    width: 250px;
+    height: 30px;
 `
-
-const Continue = S.button`
-    width: 150px;
-    height: 50px;
-    border-radius: 5px;
-    border: none;
-    background: rgb(48 178 90);
-    font-weight: 500;
-    color: white;
+const Select = S.select`
+    width: 100%;
+    height: 30px;
+    font-size: 0.9rem;
     
 `
 
-const Warning = S.div`
-    font-weight: 600;
-    font-size: 1.1rem;
+const Option = S.option`
+    color: grey;
+    font-size: 0.9rem;
 `
 
-export default NewGame;
+const Option2 = S.option`
+    font-size: 0.9rem;
+`
+
+const Selected = S.div`
+    height: 40%;
+    width: 100%;
+    text-align: center;
+    padding-top: 20px;
+`
+const Logo = S.img`
+    width: 100px;
+    margin-top: 10px;
+`
+
+const Row = S.div`
+    width: 100%;
+    height: 30px;
+    display: flex;
+    border-bottom: 1px solid #e7e7e7;
+    border-top: 1px solid #e7e7e7;
+    justify-content: space-between;
+    align-items: center;
+`
+
+const Handicap = S.div`
+    margin-right: 2%;
+    width: 25%;
+`
+
+const Player = S.div`
+    font-size: 1.2rem;
+    display: flex;
+    width: 35%;
+    justify-content: space-between;
+    margin-left: 4%;
+`
+
+const Cross = S.img`
+    width: 23px;
+    margin-left: 5px;
+`
+
+const Bottom = S.div`
+    width: 100%;
+    height: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 15px;
+    background: #abcfff;
+    color: white;
+    border-top: 3px solid #191944;
+`
+
+const Continue = S.button`
+    width: 190px;
+    height: 60px;
+    border-radius: 5px;
+    border: none;
+    background: #218221;
+    font-weight: 500;
+    color: white;
+    font-size: 0.9rem;
+    &:hover {
+        background: green;
+      }
+    
+`
+
+const Tee = S.img`
+    width: 80px;
+    margin-bottom: 2px;
+    
+
+`
+
+
+const TeeBall = S.img`
+    width: 80px;
+    text-decoration: none;
+    margin-bottom: 0px;
+    pading-bottom: 0px;
+    
+    &:hover {
+        cursor: pointer
+        ${Bottom} {
+            background: green;
+          }
+    }
+ 
+
+
+
+`
+
+// const Warning = S.div`
+//     width: 200px;
+//     border: none;
+//     font-weight: 500;
+//     font-size: 0.9rem;
+//     display: flex;
+//     align-items: flex-end;
+//     justify-content: center;
+//     border-radius: 5px;
+//     height: 100px;
+// `
+
