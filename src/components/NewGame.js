@@ -106,11 +106,12 @@ const NewGame = () => {
 export default NewGame;
 
 const Card = S.form`
-    width: 300px;
+    width: 375px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 550px;
+    height: 650px;
+    margin-top: 0px;
 `
 
 const Title = S.h1`
@@ -118,7 +119,7 @@ const Title = S.h1`
     font-weight: 400;
     width: 100%; 
     height: 140px;
-    margin-top: 0;
+    margin-top: 0px;
     color: black;
     display: flex;
     padding-bottom: 5px;
@@ -132,6 +133,7 @@ const Title = S.h1`
     background-image: linear-gradient(transparent 50%,#f6f5f0 50%);
     card-align: center;
     z-index: 100;
+
  
 `
 
@@ -181,7 +183,7 @@ const Logo = S.img`
 
 const Row = S.div`
     width: 100%;
-    height: 30px;
+    height: 43px;
     display: flex;
     border-bottom: 1px solid #e7e7e7;
     border-top: 1px solid #e7e7e7;
@@ -192,14 +194,16 @@ const Row = S.div`
 const Handicap = S.div`
     margin-right: 2%;
     width: 25%;
+    font-size: 1.2rem;
 `
 
 const Player = S.div`
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     display: flex;
-    width: 35%;
+    width: 200px;
     justify-content: space-between;
-    margin-left: 4%;
+    padding-left: 10px;
+   
 `
 
 const Cross = S.img`
@@ -215,7 +219,7 @@ const Bottom = S.div`
     justify-content: flex-end;
     align-items: center;
     padding-bottom: 15px;
-    background: #abcfff;
+    background: #2b4363;
     color: white;
     border-top: 3px solid #191944;
 `

@@ -228,7 +228,7 @@ const Column = S.div`
 
 const Box = S.div`
     height: 35px;
-    width: 48px;
+    width: 56px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -238,7 +238,7 @@ const Box = S.div`
 
 const Hole = S.div`
     height: 35px;
-    width: 40px;
+    width: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
