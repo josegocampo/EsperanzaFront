@@ -67,7 +67,7 @@ export default Landing;
 
 const Main = S.div` 
   height: 450px;
-  width: 300px;
+  width: 375px;
   
   `
 const Content = S.div` 
@@ -77,7 +77,7 @@ const Content = S.div`
   height: 100%;
   justify-content: space-between;
   background-image: url(${cancha});
-  background-size: 373px 450px;
+  background-size: 375px 450px;
   background-position: 0% 100%;
   `
 const Title = S.h1`
