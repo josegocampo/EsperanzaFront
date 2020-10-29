@@ -140,7 +140,7 @@ const GameCard = ( {players, setPlayers, setFinished, setSelectedPlayers, select
 
                                         id={rowIndex - 2}
                                         className={holeMax(players[0], holeIndex, playerHole) ? 'hole red' : 'hole'}
-                                        type="card"
+                                        type="number"
                                         onChange={e => handlePlayers(e, holeIndex)}
                                         name={hole.name}
                                         value={playerHole}
