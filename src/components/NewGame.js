@@ -30,7 +30,6 @@ const NewGame = () => {
     },
         [])
 
-
     const handleSelect = (e) => {
         const index = e.target.value
         if (index === "nope") {
@@ -46,7 +45,6 @@ const NewGame = () => {
         }
     }
 
-
     const handleDelete = (player) => {
         setSelectedPlayers(produce(selectedPlayers, draft => {
             let index = draft.findIndex(p => p.id === player.id)
@@ -54,7 +52,7 @@ const NewGame = () => {
         }))
     }
     
-
+    
     async function handleSubmit(e) {
         e.preventDefault()
     }
