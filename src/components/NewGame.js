@@ -60,44 +60,47 @@ const NewGame = () => {
 
 
     return (
-        <Card onSubmit={handleSubmit}>
-
-            <Title><Logo src={esperanza} alt="logo"/></Title>
-            <Intro className="text">PLAYER SELECTION</Intro>
-
-            <DropDown>
-                {selectedPlayers.length >= 4 ? <DropDown style={{fontSize:'0.8rem'}}>4 players max!</DropDown> :
-                    <Select name="players" onChange={handleSelect} className="selector" autofocus="disabled">
-                        <Option2 value="nope" className="nope" selected>select 2 to 4 players...</Option2>
-                        {playersData ? playersData.map((p) =>
-                            <Option value={p.id} id={p.name} className="selector">{p.name}</Option>) :
-                            <h2>Waiting for Players Data</h2>}
-                    </Select>}
-            </DropDown>
-
-            <Selected>
-                {selectedPlayers.map((p, ix) => 
-                    <Row className="hand-write">
-                        <Player>{ix+1}. {p.name}
-                        <Cross src={close} alt="close-button" onClick={() => { handleDelete(p) }} />
-                        </Player>
-                        <Handicap>Hc: 15</Handicap>
-                    </Row>)
-                    }
-            </Selected>
-
-           
-                {selectedPlayers && selectedPlayers.length >= 2 && selectedPlayers.length < 5 ?
-                     <Bottom>
-                        
-                          <Link to="/game">
-                            <TeeBall src={tbell}/>
-                          </Link>
-                     </Bottom>
-                    : <Bottom><Tee src={tee}/></Bottom>}
-
+    <>
     
-        </Card>
+                <Title><Logo src={esperanza} alt="logo"/></Title>
+                
+            <Card onSubmit={handleSubmit}>
+                <Intro className="text">PLAYER SELECTION</Intro>
+    
+                <DropDown>
+                    {selectedPlayers.length >= 4 ? <DropDown style={{fontSize:'0.8rem'}}>4 players max!</DropDown> :
+                        <Select name="players" onChange={handleSelect} className="selector" autofocus="disabled">
+                            <Option2 value="nope" className="nope" selected>select 2 to 4 players...</Option2>
+                            {playersData ? playersData.map((p) =>
+                                <Option value={p.id} id={p.name} className="selector">{p.name}</Option>) :
+                                <h2>Waiting for Players Data</h2>}
+                        </Select>}
+                </DropDown>
+    
+                <Selected>
+                    {selectedPlayers.map((p, ix) => 
+                        <Row className="hand-write">
+                            <Player>{ix+1}. {p.name}
+                            <Cross className="cross" src={close} alt="close-button" onClick={() => { handleDelete(p) }} />
+                            </Player>
+                            <Handicap>Hc: 15</Handicap>
+                        </Row>)
+                        }
+                </Selected>
+    
+               
+                    {selectedPlayers && selectedPlayers.length >= 2 && selectedPlayers.length < 5 ?
+                         <Bottom>
+                            
+                              <Link to="/game">
+                                <TeeBall src={tbell}/>
+                              </Link>
+                         </Bottom>
+                        : <Bottom><Tee src={tee}/></Bottom>}
+    
+        
+            </Card>
+    </>
     )
 }
 
@@ -108,7 +111,7 @@ const Card = S.form`
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 650px;
+    height: 537px;
     margin-top: 0px;
 `
 
@@ -140,7 +143,7 @@ const Intro = S.div`
     color: #262626;
     margin-bottom: 15px;
     font-size: 1.3rem;
-    margin-top: 30px;
+    margin-top: 10px;
 `
 const PlayersLine = S.div`
     display: flex;
@@ -181,7 +184,7 @@ const Logo = S.img`
 
 const Row = S.div`
     width: 100%;
-    height: 43px;
+    height: 25%;
     display: flex;
     border-bottom: 1px solid #e7e7e7;
     border-top: 1px solid #e7e7e7;
@@ -207,11 +210,12 @@ const Player = S.div`
 const Cross = S.img`
     width: 23px;
     margin-left: 5px;
+    cursor: pointer;
 `
 
 const Bottom = S.div`
     width: 100%;
-    height: 45%;
+    height: 150px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -239,7 +243,7 @@ const Continue = S.button`
 
 const Tee = S.img`
     width: 80px;
-    margin-bottom: 2px;
+    margin-bottom: 15px;
     
 
 `
@@ -250,6 +254,7 @@ const TeeBall = S.img`
     text-decoration: none;
     margin-bottom: 0px;
     pading-bottom: 0px;
+    margin-bottom: 15px;
     
     &:hover {
         cursor: pointer

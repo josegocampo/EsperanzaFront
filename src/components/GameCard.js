@@ -107,63 +107,67 @@ const GameCard = ( {players, setPlayers, setFinished, setSelectedPlayers, select
  
 
     return (
-        <Card onSubmit={buttonClicks ? handleSubmit : showAlert} >
-        <Title><img src={esperanza} className="oak" /></Title>
-        <div style={{ borderLeft: '1px solid darkgrey' }}>
-            <NameRow>
-                <Hole className="card" style={{ height: 35 }}>Hole</Hole>
-                <Box className="card" style={{ height: 35 }} >Par</Box>
-                {players.map(p => <Box className="hole" style={{ height: 35 }} >{p.player_name}</Box>)}
-            </NameRow>
-            <Bottom>
-
-                {rows.map((row, rowIndex) => {
-                    return <Column>
-                        {holes.map((hole, holeIndex) => {
-                            if (rowIndex === 0) {
-                                return <Hole className="card">{hole.number}</Hole>
-                            }
-                            if (rowIndex === 1) {
-                                return <Box className="card">{hole.par}</Box>
-                            }
-                            else {
-                                const player = players[rowIndex - 2].holes
-                                const holeName = hole.name
-                                const playerHole = player[holeName]
-                                if (!players[rowIndex - 2].player_name){
-                                    return <Box></Box>
+        
+       <>
+         <Card onSubmit={buttonClicks ? handleSubmit : showAlert} >
+            <Title><img src={esperanza} className="oak" /></Title>
+          
+            <div style={{ borderLeft: '1px solid darkgrey' }}>
+                <NameRow>
+                    <Hole className="card" style={{ height: 38 }}>Hole</Hole>
+                    <Box className="card" style={{ height: 38 }} >Par</Box>
+                    {players.map(p => <Box className="hole" style={{ height: 38 }} >{p.player_name}</Box>)}
+                </NameRow>
+                <Bottom>
+    
+                    {rows.map((row, rowIndex) => {
+                        return <Column>
+                            {holes.map((hole, holeIndex) => {
+                                if (rowIndex === 0) {
+                                    return <Hole className="card">{hole.number}</Hole>
                                 }
-                                //I should ptobably extract this into its own component or function
-                                else{
-                                    return <Box key={holeIndex}>
-                                    <Input
-
-                                        id={rowIndex - 2}
-                                        className={holeMax(players[0], holeIndex, playerHole) ? 'hole red' : 'hole'}
-                                        type="number"
-                                        onChange={e => handlePlayers(e, holeIndex)}
-                                        name={hole.name}
-                                        value={playerHole}
-
-                                    ></Input>
-                                </Box>
+                                if (rowIndex === 1) {
+                                    return <Box className="card">{hole.par}</Box>
                                 }
-                              
-                            }
-                        })}
-                    </Column>
-                })}
-            </Bottom>
-            <ScoreRow> <Hole className="card"></Hole><Box className="card">Gross</Box>{players.map(e => <Box className="hole">{e.gross_score}</Box>)}</ScoreRow>
-            <ScoreRow> <Hole className="card"></Hole><Box className="card">Net</Box>{players.map(e => <Box className="hole">{e.net_score}</Box>)}</ScoreRow>
-            <ScoreRow> <Hole className="card"></Hole><Box className="card">Hc</Box>{players.map(e => <Box className="hole">{e.hc_score}</Box>)}</ScoreRow>
-        </div>
-        {sent ? <Link to="/" style={{ textDecoration: 'none', width: '100%' }}><Button style={{background: '#2b4363', border: '2px solid lightgrey'}} onClick={cleanState}>Back to Main Screen</Button></Link> :
-            <Button className="text" style={buttonClicks ? { background: '#119111' } : { background: '#858585' }} 
-            children={buttonClicks? "Confirm Score" : "Post Score"} />
-        }
-
-    </Card>
+                                else {
+                                    const player = players[rowIndex - 2].holes
+                                    const holeName = hole.name
+                                    const playerHole = player[holeName]
+                                    if (!players[rowIndex - 2].player_name){
+                                        return <Box></Box>
+                                    }
+                                    //I should ptobably extract this into its own component or function
+                                    else{
+                                        return <Box key={holeIndex}>
+                                        <Input
+    
+                                            id={rowIndex - 2}
+                                            className={holeMax(players[0], holeIndex, playerHole) ? 'hole red' : 'hole'}
+                                            type="number"
+                                            onChange={e => handlePlayers(e, holeIndex)}
+                                            name={hole.name}
+                                            value={playerHole}
+    
+                                        ></Input>
+                                    </Box>
+                                    }
+                                  
+                                }
+                            })}
+                        </Column>
+                    })}
+                </Bottom>
+                <ScoreRow> <Hole className="card"></Hole><Box className="card">Gross</Box>{players.map(e => <Box className="hole">{e.gross_score}</Box>)}</ScoreRow>
+                <ScoreRow> <Hole className="card"></Hole><Box className="card">Net</Box>{players.map(e => <Box className="hole">{e.net_score}</Box>)}</ScoreRow>
+                <ScoreRow> <Hole className="card"></Hole><Box className="card">Hc</Box>{players.map(e => <Box className="hole">{e.hc_score}</Box>)}</ScoreRow>
+            </div>
+            {sent ? <Link to="/" style={{ textDecoration: 'none', width: '100%' }}><Button style={{background: '#2b4363', border: '2px solid lightgrey'}} onClick={cleanState}>Back to Main Screen</Button></Link> :
+                <Button className="text" style={buttonClicks ? { background: '#119111' } : { background: '#858585' }} 
+                children={buttonClicks? "Confirm Score" : "Post Score"} />
+            }
+    
+        </Card>
+       </>
     )
 }
 
@@ -174,6 +178,8 @@ const Card = S.form`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 375px;
+
 `
 
 const Title = S.h1`
@@ -227,8 +233,8 @@ const Column = S.div`
 `
 
 const Box = S.div`
-    height: 35px;
-    width: 56px;
+    height: 38px;
+    width: 63px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -237,8 +243,8 @@ const Box = S.div`
 `
 
 const Hole = S.div`
-    height: 35px;
-    width: 45px;
+    height: 38px;
+    width: 50px;
     display: flex;
     align-items: center;
     justify-content: center;

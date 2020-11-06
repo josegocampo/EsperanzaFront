@@ -66,7 +66,7 @@ const Landing = () =>{
 export default Landing;
 
 const Main = S.div` 
-  height: 450px;
+  height: 550px;
   width: 375px;
   
   `
@@ -77,7 +77,7 @@ const Content = S.div`
   height: 100%;
   justify-content: space-between;
   background-image: url(${cancha});
-  background-size: 375px 450px;
+  background-size: 375px 550px;
   background-position: 0% 100%;
   `
 const Title = S.h1`
@@ -102,7 +102,7 @@ const Title = S.h1`
 `
 
 const Buttons = S.div`
-  height: 150px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -116,10 +116,10 @@ const Button = S.div`
     text-decoration: none;
     border-bottom: none;
     width: 170px;
-    height: 40px;
+    height: 50px;
     color: white;
     font-weight: 600;
-    font-size: 13px;
+    font-size: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
