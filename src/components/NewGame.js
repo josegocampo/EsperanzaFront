@@ -209,6 +209,7 @@ const Player = S.div`
 
 const Cross = S.img`
     width: 23px;
+    height: 23px;
     margin-left: 5px;
     cursor: pointer;
 `
