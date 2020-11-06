@@ -55,8 +55,9 @@ const GameHistoryDisplay = ( props ) => {
     return (
       <div> 
            
-            <Card>
+            
                 <Title><img src={esperanza} className="oak" /></Title>
+                <Card>
                 {gameClicked ? <GameDetails id={gameId} btn={hChange}/> : 
                  playerGames ? keyz.map(( key, index ) => {
                     return <Row className={ index % 2 != 0 ? "odd" : null }>
@@ -147,6 +148,9 @@ const Buttons = S.div`
     padding-right: 5px;
     display: flex;
     justify-content: space-between;
+    height: 10%
+    position: absolute;
+    float: bottom;
 `
 
 const Button =S.button`

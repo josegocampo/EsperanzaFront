@@ -21,14 +21,16 @@ const GameDetails = ( {id, btn} ) => {
 
     return(
         <div>
-            { gameInfo ? <View>{ gameInfo.map(( player ) => <div>{player.player_name}</div>) } <button onClick={btn} style={{height: 20, width: 20}}></button></View>
+            { gameInfo ? 
+            <View>{ gameInfo.map(( player ) => <div>{player.player_name}</div>) } 
+                <button onClick={btn} style={{height: 20, width: 20}}></button>
+            </View>
             : <View>...loading</View>}
-            </div>
+        </div>
     )
 }
 
 const View = S.div`
-
 `
 
 

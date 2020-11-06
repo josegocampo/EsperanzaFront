@@ -158,7 +158,7 @@ const GameCard = ( {players, setPlayers, setFinished, setSelectedPlayers, select
             <ScoreRow> <Hole className="card"></Hole><Box className="card">Net</Box>{players.map(e => <Box className="hole">{e.net_score}</Box>)}</ScoreRow>
             <ScoreRow> <Hole className="card"></Hole><Box className="card">Hc</Box>{players.map(e => <Box className="hole">{e.hc_score}</Box>)}</ScoreRow>
         </div>
-        {sent ? <Link to="/" style={{ textDecoration: 'none' }}><Button style={{background: 'black', border: '2px solid lightgrey', width: 200}} onClick={cleanState}>Back to Main Screen</Button></Link> :
+        {sent ? <Link to="/" style={{ textDecoration: 'none', width: '100%' }}><Button style={{background: '#2b4363', border: '2px solid lightgrey'}} onClick={cleanState}>Back to Main Screen</Button></Link> :
             <Button className="text" style={buttonClicks ? { background: '#119111' } : { background: '#858585' }} 
             children={buttonClicks? "Confirm Score" : "Post Score"} />
         }
@@ -255,12 +255,15 @@ const Input = S.input`
 `
 
 const Button = S.button`
-    width: 150px;
-    height: 50px;
+    width: 100%;
+    height: 60px;
     border-radius: 5px;
     border: none;
     font-weight: 600;
-    margin-top: 20px;
     color: white;
     font-size: 0.9rem;
+
+    &:hover{
+        border: 3px solid lightgreen;
+    }
 `
