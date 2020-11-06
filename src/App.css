@@ -9,11 +9,11 @@ body{
 
 .App {
   text-align: center;
+  width: 375px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: red;
   font-family: -apple-system , BlinkMacSystemFont , "Segoe UI" , "Roboto" , "Helvetica Neue" , "Ubuntu" , sans-serif;
 }
 
@@ -58,7 +58,6 @@ body{
   outline-style: none;
   display: flex;
   text-align: center;
-  color: pink;
   font-family: 'Marck Script', cursive;
   font-size: 1.2rem;
   font-weight: 500;

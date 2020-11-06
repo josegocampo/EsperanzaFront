@@ -20,19 +20,11 @@ const Game = () => {
                 draft[ix].player_name = player.name
             })
         }))
-        // console.log('this runs')
-        // const playersCopy = [...players]
-        // selectedPlayers.map((player, ix) => {
-        //     playersCopy[ix].id = player.id;
-        //     playersCopy[ix].player_name = player.name
-        // })
-        // setPlayers(playersCopy)
-    },
-        [])
-
     
+        },
+    [])
 
-    console.log(players)
+
     return (
         <div className="bigcard">
             {finished ? <GetWinners players={players} setFinished={setFinished}/> 
