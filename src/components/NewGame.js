@@ -7,6 +7,7 @@ import S from 'styled-components';
 import esperanza from '../images/esperanza.png'
 import close from '../images/close.png'
 import golf from '../images/golf.png'
+import golfball from '../images/golfball.jpg'
 import tee from '../images/tee.png'
 import tbell from '../images/tbell.png'
 
@@ -90,13 +91,14 @@ const NewGame = () => {
     
                
                     {selectedPlayers && selectedPlayers.length >= 2 && selectedPlayers.length < 5 ?
-                         <Bottom>
+                         <Bottom2>
                             
                               <Link to="/game">
-                                <TeeBall src={tbell}/>
+                              <Button>Play</Button>
+                               
                               </Link>
-                         </Bottom>
-                        : <Bottom><Tee src={tee}/></Bottom>}
+                         </Bottom2>
+                        : <Bottom/>}
     
         
             </Card>
@@ -111,7 +113,7 @@ const Card = S.form`
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 537px;
+    justify-content: space-between;
     margin-top: 0px;
 `
 
@@ -145,11 +147,6 @@ const Intro = S.div`
     font-size: 1.3rem;
     margin-top: 10px;
 `
-const PlayersLine = S.div`
-    display: flex;
-    width: 40%;
-    justify-content: center;
-`
 
 const DropDown = S.div`
     width: 250px;
@@ -172,10 +169,9 @@ const Option2 = S.option`
 `
 
 const Selected = S.div`
-    height: 40%;
+    margin-top: 5px;
     width: 100%;
     text-align: center;
-    padding-top: 20px;
 `
 const Logo = S.img`
     width: 100px;
@@ -184,7 +180,7 @@ const Logo = S.img`
 
 const Row = S.div`
     width: 100%;
-    height: 25%;
+    height: 38px;
     display: flex;
     border-bottom: 1px solid #e7e7e7;
     border-top: 1px solid #e7e7e7;
@@ -215,16 +211,39 @@ const Cross = S.img`
 `
 
 const Bottom = S.div`
-    width: 100%;
-    height: 150px;
+    position: absolute; 
+    bottom: 0;
+    color: white;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
     align-items: center;
-    padding-bottom: 15px;
-    background: #2b4363;
+    height: 250px;
+    width: 375px;
+    justify-content: center;
+    background-image: url(${golfball});
+    background-size: 375px 275px;
+    background-position: 0% 100%;
+      -webkit-filter: grayscale(100%);
+      -moz-filter: grayscale(100%);
+        -o-filter: grayscale(100%);
+       -ms-filter: grayscale(100%);
+           filter: grayscale(100%); 
+`
+
+const Bottom2 = S.div`
+    position: absolute; 
+    bottom: 0;
     color: white;
-    border-top: 3px solid #191944;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 250px;
+    width: 375px;
+    justify-content: center;
+    background-image: url(${golfball});
+    background-size: 375px 275px;
+    background-position: 0% 100%;
+
 `
 
 const Continue = S.button`
@@ -242,32 +261,48 @@ const Continue = S.button`
     
 `
 
-const Tee = S.img`
-    width: 80px;
-    margin-bottom: 15px;
-    
-
-`
-
-
-const TeeBall = S.img`
-    width: 80px;
+const Button = S.button`
     text-decoration: none;
-    margin-bottom: 0px;
-    pading-bottom: 0px;
-    margin-bottom: 15px;
+    border: none;
+    width: 170px;
+    height: 50px;
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 5px;
+    letter-spacing: 0.3px;
+    background: #38383885;
+    margin-bottom: 80px;
     
+
+  
+
     &:hover {
-        cursor: pointer
-        ${Bottom} {
-            background: green;
-          }
-    }
+      background-color: #edece3;
+      color: #764F17;
+      background: #edece3;
+      background-position: 0 100%;
+      background-size: 100% 2px;
+      text-align: center;
+      z-index: 100;
+      background-image: linear-gradient(transparent 50%,#f6f5f0 50%);
  
-
-
-
+    -webkit-transition: background-color 0.5s ease-in; 
+            transition: background-color 0.5s ease-in;
+            -webkit-transition: color 0.5s ease-in; 
+            transition: color 0.5s ease-in;
+    }
+  
 `
+
+
+
+
+
 
 // const Warning = S.div`
 //     width: 200px;
