@@ -17,11 +17,11 @@ const GameHistoryDisplay = ( {games, keyz} ) => {
 
     
 
-    const dateFunc = (dd) =>{
-        const d = new Date(dd)
-        const newd = new Intl.DateTimeFormat('en-GB').format(d)
-        return newd
-    }
+    // const dateFunc = (dd) =>{
+    //     const d = new Date(dd)
+    //     const newd = new Intl.DateTimeFormat('en-GB').format(d)
+    //     return newd
+    // }
 
     const handleChanges = (k) =>{
         setGameClicked(true)
@@ -41,7 +41,7 @@ const GameHistoryDisplay = ( {games, keyz} ) => {
                 {gameClicked ? <GameDetails id={gameId} btn={hChange}/> : 
                  games ? keyz.map(( key, index ) => {
                     return <Row className={ index % 2 != 0 ? "odd" : null }>
-                             <Dt>{dateFunc(games[key][0].created_at)}</Dt>
+                             {/* <Dt>{dateFunc(games[key][0].created_at)}</Dt> */}
                             <Players> { games[key].map( player => 
                                     <Player> <div>{player.player_name} </div><div>{player.net_score}</div> </Player>)}
                             </Players>
