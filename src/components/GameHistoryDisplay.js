@@ -7,37 +7,17 @@ import loupe from '../images/loupe.png'
 import GameDetails from './GameDetails'
 
 
-const GameHistoryDisplay = ( props ) => {
+const GameHistoryDisplay = ( {games, keyz} ) => {
 
-    const [ playerGames, setPlayerGames ] = useState()
-
-    const [ keyz, setKeyz ] = useState()
+    console.log(games, keyz)
 
     const [ gameClicked, setGameClicked ] = useState(false)
 
     const [gameId, setGameId] = useState()
 
-
-    useEffect(() =>{
-        const hashTable = {}
-            if (props.data){
-            props.data.forEach((game) => {
-               if (!hashTable[game.game_id]) {
-                hashTable[game.game_id] = [game]
-               }
-               else {
-                hashTable[game.game_id].push(game)
-               }
-           })
-           setPlayerGames(hashTable)
-           const k = Object.keys(hashTable)
-           setKeyz(k)      
-        }
-    } , [props])
-    console.log(playerGames, keyz)
+    
 
     const dateFunc = (dd) =>{
-        console.log(dd)
         const d = new Date(dd)
         const newd = new Intl.DateTimeFormat('en-GB').format(d)
         return newd
@@ -59,10 +39,10 @@ const GameHistoryDisplay = ( props ) => {
                 <Title><img src={esperanza} className="oak" /></Title>
                 <Card>
                 {gameClicked ? <GameDetails id={gameId} btn={hChange}/> : 
-                 playerGames ? keyz.map(( key, index ) => {
+                 games ? keyz.map(( key, index ) => {
                     return <Row className={ index % 2 != 0 ? "odd" : null }>
-                             <Dt>{dateFunc(playerGames[key][0].created_at)}</Dt>
-                            <Players> { playerGames[key].map( player => 
+                             <Dt>{dateFunc(games[key][0].created_at)}</Dt>
+                            <Players> { games[key].map( player => 
                                     <Player> <div>{player.player_name} </div><div>{player.net_score}</div> </Player>)}
                             </Players>
                             <Mangifying src={loupe} onClick={() => handleChanges(key)}/>
