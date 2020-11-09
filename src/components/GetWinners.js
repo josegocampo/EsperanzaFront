@@ -2,6 +2,7 @@ import React from 'react';
 import S from 'styled-components';
 import medal from '../images/medal.png';
 import confeti from '../images/confeti.png';
+import badge from '../images/badge.png';
 import close from '../images/close.png'
 
    // I wanna extract get Winners afterwards into its own component
@@ -31,7 +32,7 @@ const GetWinners = ( {players, setFinished} ) => {
                                 <span style={{
                                     borderBottom: '2px solid purple', fontWeight: 600, marginLeft: 5, marginRight: 7, color:'#731696'
                                 }}>{winners[0].player_name}</span>
-                                <img src={medal} style={{width: 20}}></img>
+                                <img src={badge} style={{width: 20, marginRight: 5}}></img>
                                 with a Net Score of <span  style={{
                                     borderBottom: '2px solid purple', color: 'green'}}>{winners[0].net_score}</span>
                                 <p>Congratulations {winners[0].player_name}.</p>
