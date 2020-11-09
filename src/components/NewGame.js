@@ -94,7 +94,7 @@ const NewGame = () => {
                          <Bottom2>
                             
                               <Link to="/game">
-                              <Button>Play</Button>
+                              <Button>PLAY</Button>
                                
                               </Link>
                          </Bottom2>
@@ -113,16 +113,17 @@ const Card = S.form`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
     margin-top: 0px;
+    justify-content: space-between;
 `
 
 const Title = S.h1`
     font-size: 35px;
     font-weight: 400;
     width: 100%; 
-    height: 140px;
+    height: 90px;
     margin-top: 0px;
+    margin-bottom: 0px;
     color: black;
     display: flex;
     padding-bottom: 5px;
@@ -139,7 +140,6 @@ const Title = S.h1`
 
  
 `
-
 const Intro = S.div`
     width: 70%;
     color: #262626;
@@ -169,9 +169,11 @@ const Option2 = S.option`
 `
 
 const Selected = S.div`
-    margin-top: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     width: 100%;
     text-align: center;
+    height: 300px;
 `
 const Logo = S.img`
     width: 100px;
@@ -180,7 +182,7 @@ const Logo = S.img`
 
 const Row = S.div`
     width: 100%;
-    height: 38px;
+    height: 50px;
     display: flex;
     border-bottom: 1px solid #e7e7e7;
     border-top: 1px solid #e7e7e7;
@@ -211,76 +213,50 @@ const Cross = S.img`
 `
 
 const Bottom = S.div`
-    position: absolute; 
-    bottom: 0;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 250px;
+    border-top: 3px solid black;
+    text-decoration: none;
     width: 375px;
+    height: 200px;
+    color: white;
+    font-weight: 600;
+    font-size: 2rem;;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    background-image: url(${golfball});
-    background-size: 375px 275px;
-    background-position: 0% 100%;
-      -webkit-filter: grayscale(100%);
-      -moz-filter: grayscale(100%);
-        -o-filter: grayscale(100%);
-       -ms-filter: grayscale(100%);
-           filter: grayscale(100%); 
+    letter-spacing: 0.3px;
+    background: #38383885;
+
 `
 
 const Bottom2 = S.div`
-    position: absolute; 
-    bottom: 0;
+    background: #8dffc7;
+    border-top: 3px solid #94554a;
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 250px;
+    height: 200px;
     width: 375px;
     justify-content: center;
-    background-image: url(${golfball});
-    background-size: 375px 275px;
-    background-position: 0% 100%;
-
 `
 
-const Continue = S.button`
-    width: 190px;
-    height: 60px;
-    border-radius: 5px;
-    border: none;
-    background: #218221;
-    font-weight: 500;
-    color: white;
-    font-size: 0.9rem;
-    &:hover {
-        background: green;
-      }
-    
-`
 
-const Button = S.button`
+
+const Button = S.div`
     text-decoration: none;
-    border: none;
-    width: 170px;
-    height: 50px;
+    border-bottom: none;
+    width: 375px;
+    height: 200px;
     color: white;
-    font-weight: 600;
-    font-size: 15px;
+    font-weight: 700;
+    font-size: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border-radius: 5px;
-    letter-spacing: 0.3px;
+    letter-spacing: 1px;
     background: #38383885;
-    margin-bottom: 80px;
     
-
-  
-
     &:hover {
       background-color: #edece3;
       color: #764F17;
@@ -291,28 +267,9 @@ const Button = S.button`
       z-index: 100;
       background-image: linear-gradient(transparent 50%,#f6f5f0 50%);
  
-    -webkit-transition: background-color 0.5s ease-in; 
-            transition: background-color 0.5s ease-in;
-            -webkit-transition: color 0.5s ease-in; 
-            transition: color 0.5s ease-in;
+    -webkit-transition: background-color 0.8s ease-in; 
+            transition: background-color 0.8s ease-in;
+            -webkit-transition: color 0.8s ease-in; 
+            transition: color 0.8s ease-in;
     }
-  
-`
-
-
-
-
-
-
-// const Warning = S.div`
-//     width: 200px;
-//     border: none;
-//     font-weight: 500;
-//     font-size: 0.9rem;
-//     display: flex;
-//     align-items: flex-end;
-//     justify-content: center;
-//     border-radius: 5px;
-//     height: 100px;
-// `
-
+    `

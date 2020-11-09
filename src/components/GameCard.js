@@ -114,9 +114,9 @@ const GameCard = ( {players, setPlayers, setFinished, setSelectedPlayers, select
           
             <div style={{ borderLeft: '1px solid darkgrey' }}>
                 <NameRow>
-                    <Hole className="card" style={{ height: 38 }}>Hole</Hole>
-                    <Box className="card" style={{ height: 38 }} >Par</Box>
-                    {players.map(p => <Box className="hole" style={{ height: 38 }} >{p.player_name}</Box>)}
+                    <Hole className="card" style={{ height: 40 }}>Hole</Hole>
+                    <Box className="card" style={{ height: 40 }} >Par</Box>
+                    {players.map(p => <Box className="hole" style={{ height: 40 }} >{p.player_name}</Box>)}
                 </NameRow>
                 <Bottom>
     
@@ -161,8 +161,8 @@ const GameCard = ( {players, setPlayers, setFinished, setSelectedPlayers, select
                 <ScoreRow> <Hole className="card"></Hole><Box className="card">Net</Box>{players.map(e => <Box className="hole">{e.net_score}</Box>)}</ScoreRow>
                 <ScoreRow> <Hole className="card"></Hole><Box className="card">Hc</Box>{players.map(e => <Box className="hole">{e.hc_score}</Box>)}</ScoreRow>
             </div>
-            {sent ? <Link to="/" style={{ textDecoration: 'none', width: '100%' }}><Button style={{background: '#2b4363', border: '2px solid lightgrey'}} onClick={cleanState}>Back to Main Screen</Button></Link> :
-                <Button className="text" style={buttonClicks ? { background: '#119111' } : { background: '#858585' }} 
+            {sent ? <Link to="/" style={{ textDecoration: 'none', width: '100%' }}><Button className="text grey" onClick={cleanState}>Back to Main Screen</Button></Link> :
+                <Button className={buttonClicks ? "text ready" : "text grey"}
                 children={buttonClicks? "Confirm Score" : "Post Score"} />
             }
     
@@ -233,7 +233,7 @@ const Column = S.div`
 `
 
 const Box = S.div`
-    height: 38px;
+    height: 40px;
     width: 63px;
     display: flex;
     align-items: center;
@@ -243,7 +243,7 @@ const Box = S.div`
 `
 
 const Hole = S.div`
-    height: 38px;
+    height: 40px;
     width: 50px;
     display: flex;
     align-items: center;
@@ -261,15 +261,12 @@ const Input = S.input`
 `
 
 const Button = S.button`
-    width: 100%;
-    height: 60px;
-    border-radius: 5px;
     border: none;
+    border-top: 3px solid #925347;
+    width: 100%;
+    height: 120px;
     font-weight: 600;
     color: white;
-    font-size: 0.9rem;
+    font-size: 1rem;
 
-    &:hover{
-        border: 3px solid lightgreen;
-    }
 `
