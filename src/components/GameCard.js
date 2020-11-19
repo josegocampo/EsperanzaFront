@@ -234,7 +234,7 @@ const Column = S.div`
 
 const Box = S.div`
     height: 40px;
-    width: 63px;
+    width: 63.4px;
     display: flex;
     align-items: center;
     justify-content: center;

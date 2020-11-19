@@ -9,8 +9,6 @@ import GameDetails from './GameDetails'
 
 const GameHistoryDisplay = ( {games, keyz} ) => {
 
-    console.log(games, keyz)
-
     const [ gameClicked, setGameClicked ] = useState(false)
 
     const [gameId, setGameId] = useState()
@@ -50,7 +48,7 @@ const GameHistoryDisplay = ( {games, keyz} ) => {
                             <Mangifying src={loupe} onClick={() => handleChanges(key)}/>
                         </Row>
                 }) : "loading"}
-                <Buttons><Button>A</Button><Button>B</Button></Buttons>
+                <Buttons></Buttons>
         </Card>
       </div>
      
@@ -59,7 +57,7 @@ const GameHistoryDisplay = ( {games, keyz} ) => {
 
 const Card = S.div`
     height: 550px;
-    width: 300px;
+    width: 375px;
     color: #1d384d;
     font-size: 0.8rem;
     font-weight: 600;
