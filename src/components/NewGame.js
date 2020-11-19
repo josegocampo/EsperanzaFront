@@ -36,8 +36,8 @@ const NewGame = () => {
         if (index === "nope") {
             return null
         }
-        else{
-            setSelectedPlayers(produce(selectedPlayers, draft =>{
+        else {
+            setSelectedPlayers(produce(selectedPlayers, draft => {
                 let found = draft.findIndex(p => p.id == index) != -1 ? true : false
                 if (!found) {
                     draft.push(playersData[playersData.findIndex(p => p.id == index)])
@@ -52,8 +52,8 @@ const NewGame = () => {
             draft.splice(index, 1)
         }))
     }
-    
-    
+
+
     async function handleSubmit(e) {
         e.preventDefault()
     }
@@ -61,48 +61,50 @@ const NewGame = () => {
 
 
     return (
-    <>
-    
-                <Title><Logo src={esperanza} alt="logo"/></Title>
-                
+        <>
+
+            <Title><Logo src={esperanza} alt="logo" /></Title>
+
             <Card onSubmit={handleSubmit}>
                 <Intro className="text">PLAYER SELECTION</Intro>
-    
+
                 <DropDown>
-                    {selectedPlayers.length >= 4 ? <DropDown style={{fontSize:'0.8rem'}}>4 players max!</DropDown> :
-                        <Select name="players" onChange={handleSelect} className="selector" autofocus="disabled">
-                            <Option2 value="nope" className="nope" selected>select 2 to 4 players...</Option2>
-                            {playersData ? playersData.map((p) =>
-                                <Option value={p.id} id={p.name} className="selector">{p.name}</Option>) :
-                                <h2>Waiting for Players Data</h2>}
-                        </Select>}
+                    {playersData ?
+                        selectedPlayers.length >= 4 ? <DropDown style={{ fontSize: '0.8rem' }}>4 players max!</DropDown> :
+                            <Select name="players" onChange={handleSelect} className="card" autofocus="disabled">
+                                <Option2 value="nope" selected>select 2 to 4 players...</Option2>
+                                {playersData ? playersData.map((p) =>
+                                    <Option value={p.id} id={p.name} >{p.name}</Option>) :
+                                    <h2>Waiting for Players Data</h2>}
+                            </Select>
+                        : "Loading players..."}
                 </DropDown>
-    
+
                 <Selected>
-                    {selectedPlayers.map((p, ix) => 
+                    {selectedPlayers.map((p, ix) =>
                         <Row className="hand-write">
-                            <Player>{ix+1}. {p.name}
-                            <Cross className="cross" src={close} alt="close-button" onClick={() => { handleDelete(p) }} />
+                            <Player>{ix + 1}. {p.name}
+                                <Cross className="cross" src={close} alt="close-button" onClick={() => { handleDelete(p) }} />
                             </Player>
                             <Handicap>Hc: 15</Handicap>
                         </Row>)
-                        }
+                    }
                 </Selected>
-    
-               
-                    {selectedPlayers && selectedPlayers.length >= 2 && selectedPlayers.length < 5 ?
-                         <Bottom2>
-                            
-                              <Link to="/game">
-                              <Button>PLAY</Button>
-                               
-                              </Link>
-                         </Bottom2>
-                        : <Bottom/>}
-    
-        
+
+
+                {selectedPlayers && selectedPlayers.length >= 2 && selectedPlayers.length < 5 ?
+                    <Bottom2>
+
+                        <Link to="/game">
+                            <Button>PLAY</Button>
+
+                        </Link>
+                    </Bottom2>
+                    : <Bottom />}
+
+
             </Card>
-    </>
+        </>
     )
 }
 
@@ -141,7 +143,7 @@ const Title = S.h1`
  
 `
 const Intro = S.div`
-    width: 70%;
+    width: 90%;
     color: #262626;
     margin-bottom: 15px;
     font-size: 1.3rem;
@@ -149,18 +151,21 @@ const Intro = S.div`
 `
 
 const DropDown = S.div`
-    width: 250px;
+    width: 350px;
     height: 30px;
 `
 const Select = S.select`
-    width: 100%;
-    height: 30px;
-    font-size: 0.9rem;
+    width: 80%;
+    height: 40px;
+    font-size: 1rem;
+    border: none;
+    border: 3px inset #925347;
+    margin-bottom: 10px;
     
 `
 
 const Option = S.option`
-    color: grey;
+    color: black;
     font-size: 0.9rem;
 `
 
@@ -169,7 +174,7 @@ const Option2 = S.option`
 `
 
 const Selected = S.div`
-    margin-top: 10px;
+    margin-top: 30px;
     margin-bottom: 10px;
     width: 100%;
     text-align: center;
@@ -185,7 +190,6 @@ const Row = S.div`
     height: 50px;
     display: flex;
     border-bottom: 1px solid #e7e7e7;
-    border-top: 1px solid #e7e7e7;
     justify-content: space-between;
     align-items: center;
 `

@@ -13,6 +13,24 @@ export const holes = [
 
 export const rows = [1, 2, 3, 4, 5, 6]
 
+export const fakePlayer = {
+    gross_score:"",
+    hc_score: "",
+    hole1: "",
+    hole2: "",
+    hole3: "",
+    hole4: "",
+    hole5: "",
+    hole6: "",
+    hole7: "",
+    hole8: "",
+    hole9: "",
+    holes_played:"",
+    net_score: "",
+    player_id: "",
+    player_name: ""
+}
+
 export const playas = [
     {
         id: "",
